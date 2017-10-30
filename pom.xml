@@ -86,7 +86,11 @@
                 <artifactId>saga-framework</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.networknt</groupId>
+                <artifactId>saga-dsl</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>com.networknt</groupId>
