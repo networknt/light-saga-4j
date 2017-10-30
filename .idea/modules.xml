@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/light-saga-4j.iml" filepath="$PROJECT_DIR$/light-saga-4j.iml" />
+      <module fileurl="file://$PROJECT_DIR$/order-service/order-service.iml" filepath="$PROJECT_DIR$/order-service/order-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/saga-core/saga-core.iml" filepath="$PROJECT_DIR$/saga-core/saga-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/saga-dsl/saga-dsl.iml" filepath="$PROJECT_DIR$/saga-dsl/saga-dsl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/saga-framework/saga-framework.iml" filepath="$PROJECT_DIR$/saga-framework/saga-framework.iml" />
+    </modules>
+  </component>
+</project>

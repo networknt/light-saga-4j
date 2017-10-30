@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="order-service" />
+        <module name="saga-core" />
+        <module name="saga-dsl" />
+        <module name="saga-framework" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="light-saga-4j" target="1.8" />
+      <module name="order-service" target="1.8" />
+      <module name="saga-core" target="1.8" />
+      <module name="saga-dsl" target="1.8" />
+      <module name="saga-framework" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
