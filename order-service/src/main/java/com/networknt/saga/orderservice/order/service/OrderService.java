@@ -1,7 +1,7 @@
 package com.networknt.saga.orderservice.order.service;
 
 
-import com.networknt.saga.core.events.subscriber.ResultWithEvents;
+import com.networknt.saga.core.events.ResultWithEvents;
 import com.networknt.saga.orchestration.SagaManager;
 import com.networknt.saga.orderservice.order.domain.Order;
 import com.networknt.saga.orderservice.order.domain.OrderDetails;

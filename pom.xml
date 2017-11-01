@@ -122,6 +122,11 @@
                 <artifactId>eventuate-common</artifactId>
                 <version>${version.light-eventuate}</version>
             </dependency>
+            <dependency>
+                <groupId>com.networknt</groupId>
+                <artifactId>eventuate-jdbc</artifactId>
+                <version>${version.light-eventuate}</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.slf4j</groupId>

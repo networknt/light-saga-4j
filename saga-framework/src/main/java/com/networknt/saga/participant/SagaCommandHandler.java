@@ -2,9 +2,9 @@ package com.networknt.saga.participant;
 
 
 import com.networknt.saga.common.LockTarget;
-import com.networknt.saga.core.command.comsumer.CommandHandler;
-import com.networknt.saga.core.command.comsumer.CommandMessage;
-import com.networknt.saga.core.command.comsumer.PathVariables;
+import com.networknt.saga.core.command.consumer.CommandHandler;
+import com.networknt.saga.core.command.consumer.CommandMessage;
+import com.networknt.saga.core.command.consumer.PathVariables;
 import com.networknt.saga.core.message.common.Message;
 
 import java.util.List;

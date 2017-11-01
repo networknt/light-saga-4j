@@ -2,7 +2,7 @@ package com.networknt.saga.participant;
 
 
 
-import com.networknt.saga.core.command.comsumer.CommandMessage;
+import com.networknt.saga.core.command.consumer.CommandMessage;
 import com.networknt.saga.core.message.common.Message;
 
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-public interface AbstractSagaCommandHandlersBuilder {
+public interface ISagaCommandHandlersBuilder {
   <C> SagaCommandHandlerBuilder<C> onMessageReturningMessages(Class<C> commandClass,
                                                               Function<CommandMessage<C>, List<Message>> handler);
 

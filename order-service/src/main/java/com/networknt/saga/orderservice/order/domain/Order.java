@@ -2,7 +2,7 @@ package com.networknt.saga.orderservice.order.domain;
 
 
 
-import com.networknt.saga.core.events.subscriber.ResultWithEvents;
+import com.networknt.saga.core.events.ResultWithEvents;
 
 import java.util.Collections;
 

@@ -3,9 +3,9 @@ package com.networknt.saga.participant;
 
 
 
-import com.networknt.saga.core.command.comsumer.CommandHandler;
-import com.networknt.saga.core.command.comsumer.CommandHandlers;
-import com.networknt.saga.core.command.comsumer.CommandMessage;
+import com.networknt.saga.core.command.consumer.CommandHandler;
+import com.networknt.saga.core.command.consumer.CommandHandlers;
+import com.networknt.saga.core.command.consumer.CommandMessage;
 import com.networknt.saga.core.message.common.Message;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-public class SagaCommandHandlersBuilder implements AbstractSagaCommandHandlersBuilder {
+public class SagaCommandHandlersBuilder implements ISagaCommandHandlersBuilder {
   private String channel;
 
   private List<CommandHandler> handlers = new ArrayList<>();

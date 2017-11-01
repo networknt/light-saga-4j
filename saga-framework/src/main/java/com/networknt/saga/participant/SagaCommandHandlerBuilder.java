@@ -3,9 +3,9 @@ package com.networknt.saga.participant;
 
 
 import com.networknt.saga.common.LockTarget;
-import com.networknt.saga.core.command.comsumer.CommandHandlers;
-import com.networknt.saga.core.command.comsumer.CommandMessage;
-import com.networknt.saga.core.command.comsumer.PathVariables;
+import com.networknt.saga.core.command.consumer.CommandHandlers;
+import com.networknt.saga.core.command.consumer.CommandMessage;
+import com.networknt.saga.core.command.consumer.PathVariables;
 import com.networknt.saga.core.message.common.Message;
 
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-public class SagaCommandHandlerBuilder<C> implements AbstractSagaCommandHandlersBuilder{
+public class SagaCommandHandlerBuilder<C> implements ISagaCommandHandlersBuilder {
   private final SagaCommandHandlersBuilder parent;
   private final SagaCommandHandler h;
 

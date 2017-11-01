@@ -1,4 +1,4 @@
-package com.networknt.saga.core.command.comsumer;
+package com.networknt.saga.core.command.consumer;
 
 import java.util.Map;
 
