@@ -1,10 +1,20 @@
 package com.networknt.saga.orchestration;
 
 
+import com.networknt.eventuate.common.impl.JSonMapper;
 import com.networknt.eventuate.jdbc.IdGenerator;
 import com.networknt.saga.common.LockTarget;
+import com.networknt.saga.common.SagaCommandHeaders;
+import com.networknt.saga.common.SagaReplyHeaders;
 import com.networknt.saga.core.command.common.ChannelMapping;
+import com.networknt.saga.core.command.common.CommandMessageHeaders;
+import com.networknt.saga.core.command.common.ReplyMessageHeaders;
+import com.networknt.saga.core.command.consumer.CommandWithDestination;
+import com.networknt.saga.core.events.common.EventMessageHeaders;
+import com.networknt.saga.core.events.publisher.DomainEventPublisher;
+import com.networknt.saga.core.message.common.Message;
 import com.networknt.saga.core.message.consumer.MessageConsumer;
+import com.networknt.saga.core.producer.CommandProducer;
 import com.networknt.saga.repository.SagaInstanceRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,6 +59,7 @@ public class SagaManagerImpl<Data>
 
   private SagaLockManager sagaLockManager;
 
+  private DomainEventPublisher domainEventPublisher;
 
   @Override
   public SagaInstance create(Data sagaData) {
@@ -123,8 +134,7 @@ public class SagaManagerImpl<Data>
     }
   }
 
-  @Autowired
-  private DomainEventPublisher domainEventPublisher;
+
 
   private void performEndStateActions(String sagaId, SagaInstance sagaInstance) {
     for (DestinationAndResource dr : sagaInstance.getDestinationsAndResources()) {

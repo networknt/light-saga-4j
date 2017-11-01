@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.zaxxer:HikariCP:${version.hikaricp}">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/zaxxer/HikariCP/${version.hikaricp}/HikariCP-${version.hikaricp}.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/zaxxer/HikariCP/${version.hikaricp}/HikariCP-${version.hikaricp}-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/zaxxer/HikariCP/${version.hikaricp}/HikariCP-${version.hikaricp}-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
