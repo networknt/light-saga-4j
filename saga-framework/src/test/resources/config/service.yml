@@ -8,3 +8,5 @@ singletons:
       password: sa
 - com.networknt.saga.core.message.producer.MessageProducer:
   - com.networknt.saga.repository.MessageProducerJdbcImpl
+- com.networknt.saga.repository.SagaInstanceRepository:
+  - com.networknt.saga.repository.SagaInstanceRepositoryJdbc

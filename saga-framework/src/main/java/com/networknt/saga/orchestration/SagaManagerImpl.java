@@ -6,12 +6,14 @@ import com.networknt.eventuate.jdbc.IdGenerator;
 import com.networknt.saga.common.LockTarget;
 import com.networknt.saga.common.SagaCommandHeaders;
 import com.networknt.saga.common.SagaReplyHeaders;
+import com.networknt.saga.common.SagaUnlockCommand;
 import com.networknt.saga.core.command.common.ChannelMapping;
 import com.networknt.saga.core.command.common.CommandMessageHeaders;
 import com.networknt.saga.core.command.common.ReplyMessageHeaders;
 import com.networknt.saga.core.command.consumer.CommandWithDestination;
 import com.networknt.saga.core.events.common.EventMessageHeaders;
 import com.networknt.saga.core.events.publisher.DomainEventPublisher;
+import com.networknt.saga.core.events.subscriber.DomainEventEnvelopeImpl;
 import com.networknt.saga.core.message.common.Message;
 import com.networknt.saga.core.message.consumer.MessageConsumer;
 import com.networknt.saga.core.producer.CommandProducer;
@@ -43,9 +45,9 @@ public class SagaManagerImpl<Data>
 
 
 
-  private AggregateInstanceSubscriptionsDAO aggregateInstanceSubscriptionsDAO;
+ // private AggregateInstanceSubscriptionsDAO aggregateInstanceSubscriptionsDAO;
 
-  private EnlistedAggregatesDao enlistedAggregatesDao;
+  //private EnlistedAggregatesDao enlistedAggregatesDao;
 
 
   private ChannelMapping channelMapping;
@@ -57,7 +59,7 @@ public class SagaManagerImpl<Data>
   }
 
 
-  private SagaLockManager sagaLockManager;
+ // private SagaLockManager sagaLockManager;
 
   private DomainEventPublisher domainEventPublisher;
 
@@ -123,9 +125,10 @@ public class SagaManagerImpl<Data>
     for (EventToPublish event : eventsToPublish) {
       Map<String, String> headers = new HashMap<>();
       if (isEndState) {
-        Set<String> sagaIds = enlistedAggregatesDao.findSagas(event.getAggregateType(), event.getAggregateId());
-        sagaIds.remove(sagaId);
-        headers.put("participating-saga-ids", sagaIds.stream().collect(joining(",")));
+    //    Set<String> sagaIds = enlistedAggregatesDao.findSagas(event.getAggregateType(), event.getAggregateId());
+
+  //      sagaIds.remove(sagaId);
+     //   headers.put("participating-saga-ids", sagaIds.stream().collect(joining(",")));
       }
       domainEventPublisher.publish(event.getAggregateType().getName(),
               event.getAggregateId(),
@@ -170,7 +173,7 @@ public class SagaManagerImpl<Data>
 
   private void updateEventInstanceSubscriptions(Data sagaData, String sagaId, String stateName) {
     List<EventClassAndAggregateId> instanceEvents = getStateDefinition().findEventHandlers(saga, stateName, sagaData);
-    aggregateInstanceSubscriptionsDAO.update(getSagaType(), sagaId, instanceEvents);
+//    aggregateInstanceSubscriptionsDAO.update(getSagaType(), sagaId, instanceEvents);
   }
 
   private String sendCommands(String sagaId, List<CommandWithDestination> commands) {
@@ -201,9 +204,9 @@ public class SagaManagerImpl<Data>
       String aggregateId = message.getRequiredHeader(Message.PARTITION_ID);
       String eventType = message.getRequiredHeader(EventMessageHeaders.EVENT_TYPE);
       // TODO query the saga event routing table: (at, aId, et) -> [(sagaType, sagaId)]
-      for (SagaTypeAndId sagaTypeAndId : aggregateInstanceSubscriptionsDAO.findSagas(aggregateType, aggregateId, eventType)) {
-        handleAggregateInstanceEvent(sagaTypeAndId.getSagaType(), sagaTypeAndId.getSagaId(), message, aggregateType, aggregateId, eventType);
-      }
+   //   for (SagaTypeAndId sagaTypeAndId : aggregateInstanceSubscriptionsDAO.findSagas(aggregateType, aggregateId, eventType)) {
+    //    handleAggregateInstanceEvent(sagaTypeAndId.getSagaType(), sagaTypeAndId.getSagaId(), message, aggregateType, aggregateId, eventType);
+    //  }
       ;
 
 

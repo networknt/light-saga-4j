@@ -21,10 +21,10 @@ import java.util.Map;
 
 
 /**
- * Junit test class for UserRepositoryImpl.
+ * Junit test class for MessageProducerJdbcImpl.
  * use H2 test database for data source
  */
-public class MessageProducerJdbcImpllTest {
+public class MessageProducerJdbcImplTest {
 
     public static DataSource ds;
 
@@ -33,7 +33,7 @@ public class MessageProducerJdbcImpllTest {
        try (Connection connection = ds.getConnection()) {
             // Runscript doesn't work need to execute batch here.
             String schemaResourceName = "/queryside_ddl.sql";
-            InputStream in = MessageProducerJdbcImpllTest.class.getResourceAsStream(schemaResourceName);
+            InputStream in = MessageProducerJdbcImplTest.class.getResourceAsStream(schemaResourceName);
 
             if (in == null) {
                 throw new RuntimeException("Failed to load resource: " + schemaResourceName);
@@ -54,6 +54,7 @@ public class MessageProducerJdbcImpllTest {
 
     @BeforeClass
     public static void setUp() {
+        destination = "message_send";
         Map<String, String> headers = new HashMap<>();
         headers.put("title", "test");
         OrderCommand command = new OrderCommand();
@@ -62,6 +63,7 @@ public class MessageProducerJdbcImpllTest {
                 .withHeader(CommandMessageHeaders.DESTINATION, "orderService")
                 .withHeader(CommandMessageHeaders.COMMAND_TYPE, command.getClass().getName())
                 .withHeader(CommandMessageHeaders.REPLY_TO, "reply_message");
+        message= builder.build();
     }
 
     @Test
