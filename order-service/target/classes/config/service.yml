@@ -1,4 +1,0 @@
----
-singletons:
-- com.networknt.saga.orderservice.customer.domain.CustomerRepository:
-  - com.networknt.saga.orderservice.customer.domain.CustomerRepository
