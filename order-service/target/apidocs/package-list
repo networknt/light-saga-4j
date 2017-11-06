@@ -2,4 +2,7 @@ com.networknt.saga.orderservice.common
 com.networknt.saga.orderservice.customer.domain
 com.networknt.saga.orderservice.customer.service
 com.networknt.saga.orderservice.order.domain
+com.networknt.saga.orderservice.order.saga.cancelorder
+com.networknt.saga.orderservice.order.saga.createorder
 com.networknt.saga.orderservice.order.saga.participants
+com.networknt.saga.orderservice.order.service

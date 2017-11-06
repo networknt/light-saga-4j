@@ -1,4 +1,4 @@
 ---
 singletons:
-- net.lightapi.portal.menu.MenuRepository:
-  - net.lightapi.portal.menu.MenuRepositoryArangoImpl
+- com.networknt.saga.orderservice.customer.domain.CustomerRepository:
+  - com.networknt.saga.orderservice.customer.domain.CustomerRepository

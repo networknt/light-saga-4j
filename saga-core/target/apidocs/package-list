@@ -1,8 +1,11 @@
 com.networknt.saga.core.command.common
 com.networknt.saga.core.command.common.paths
-com.networknt.saga.core.command.comsumer
+com.networknt.saga.core.command.consumer
+com.networknt.saga.core.events
 com.networknt.saga.core.events.common
+com.networknt.saga.core.events.publisher
 com.networknt.saga.core.events.subscriber
 com.networknt.saga.core.message.common
 com.networknt.saga.core.message.consumer
 com.networknt.saga.core.message.producer
+com.networknt.saga.core.producer

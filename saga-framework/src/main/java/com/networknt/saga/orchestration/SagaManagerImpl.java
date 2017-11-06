@@ -17,6 +17,8 @@ import com.networknt.saga.core.events.subscriber.DomainEventEnvelopeImpl;
 import com.networknt.saga.core.message.common.Message;
 import com.networknt.saga.core.message.consumer.MessageConsumer;
 import com.networknt.saga.core.producer.CommandProducer;
+import com.networknt.saga.participant.SagaLockManager;
+import com.networknt.saga.repository.AggregateInstanceSubscriptionsDAO;
 import com.networknt.saga.repository.SagaInstanceRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,7 +47,7 @@ public class SagaManagerImpl<Data>
 
 
 
- // private AggregateInstanceSubscriptionsDAO aggregateInstanceSubscriptionsDAO;
+  private AggregateInstanceSubscriptionsDAO aggregateInstanceSubscriptionsDAO;
 
   //private EnlistedAggregatesDao enlistedAggregatesDao;
 
@@ -59,7 +61,7 @@ public class SagaManagerImpl<Data>
   }
 
 
- // private SagaLockManager sagaLockManager;
+  private SagaLockManager sagaLockManager;
 
   private DomainEventPublisher domainEventPublisher;
 

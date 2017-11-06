@@ -1,0 +1,3 @@
+com\networknt\saga\repository\OrderCommand.class
+com\networknt\saga\repository\SagaInstanceRepositoryTest.class
+com\networknt\saga\repository\MessageProducerJdbcImplTest.class
