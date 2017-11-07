@@ -1,11 +1,6 @@
 package com.networknt.saga.repository;
 
 
-import com.networknt.eventuate.common.impl.JSonMapper;
-import com.networknt.saga.core.command.common.CommandMessageHeaders;
-import com.networknt.saga.core.message.common.Message;
-import com.networknt.saga.core.message.producer.MessageBuilder;
-import com.networknt.saga.core.message.producer.MessageProducer;
 import com.networknt.saga.orchestration.DestinationAndResource;
 import com.networknt.saga.orchestration.SagaInstance;
 import com.networknt.saga.orchestration.SerializedSagaData;
@@ -19,9 +14,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import static org.junit.Assert.assertNotNull;
@@ -39,7 +32,7 @@ public class SagaInstanceRepositoryTest {
         ds = (DataSource) SingletonServiceFactory.getBean(DataSource.class);
        try (Connection connection = ds.getConnection()) {
             // Runscript doesn't work need to execute batch here.
-            String schemaResourceName = "/queryside_ddl.sql";
+            String schemaResourceName = "/saga_repository_ddl.sql";
             InputStream in = SagaInstanceRepositoryTest.class.getResourceAsStream(schemaResourceName);
 
             if (in == null) {

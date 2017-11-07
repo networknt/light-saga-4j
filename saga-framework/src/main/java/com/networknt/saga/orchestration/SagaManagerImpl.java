@@ -19,6 +19,7 @@ import com.networknt.saga.core.message.consumer.MessageConsumer;
 import com.networknt.saga.core.producer.CommandProducer;
 import com.networknt.saga.participant.SagaLockManager;
 import com.networknt.saga.repository.AggregateInstanceSubscriptionsDAO;
+import com.networknt.saga.repository.EnlistedAggregatesDao;
 import com.networknt.saga.repository.SagaInstanceRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,7 +50,7 @@ public class SagaManagerImpl<Data>
 
   private AggregateInstanceSubscriptionsDAO aggregateInstanceSubscriptionsDAO;
 
-  //private EnlistedAggregatesDao enlistedAggregatesDao;
+  private EnlistedAggregatesDao enlistedAggregatesDao;
 
 
   private ChannelMapping channelMapping;
@@ -89,7 +90,9 @@ public class SagaManagerImpl<Data>
 
     String sagaId = sagaInstance.getId();
 
-   // resource.ifPresent( r -> Assert.isTrue(sagaLockManager.claimLock(getSagaType(), sagaId, r), "Cannot claim lock for resource"));
+    if (resource.isPresent() && !sagaLockManager.claimLock(getSagaType(), sagaId, resource.get()))  {
+      throw new IllegalArgumentException("Cannot claim lock for resource");
+    }
 
     SagaActions<Data> actions = getStateDefinition().getStartingHandler().get().apply(sagaData);
 
@@ -127,10 +130,10 @@ public class SagaManagerImpl<Data>
     for (EventToPublish event : eventsToPublish) {
       Map<String, String> headers = new HashMap<>();
       if (isEndState) {
-    //    Set<String> sagaIds = enlistedAggregatesDao.findSagas(event.getAggregateType(), event.getAggregateId());
+        Set<String> sagaIds = enlistedAggregatesDao.findSagas(event.getAggregateType(), event.getAggregateId());
 
-  //      sagaIds.remove(sagaId);
-     //   headers.put("participating-saga-ids", sagaIds.stream().collect(joining(",")));
+        sagaIds.remove(sagaId);
+        headers.put("participating-saga-ids", sagaIds.stream().collect(joining(",")));
       }
       domainEventPublisher.publish(event.getAggregateType().getName(),
               event.getAggregateId(),
@@ -175,7 +178,7 @@ public class SagaManagerImpl<Data>
 
   private void updateEventInstanceSubscriptions(Data sagaData, String sagaId, String stateName) {
     List<EventClassAndAggregateId> instanceEvents = getStateDefinition().findEventHandlers(saga, stateName, sagaData);
-//    aggregateInstanceSubscriptionsDAO.update(getSagaType(), sagaId, instanceEvents);
+    aggregateInstanceSubscriptionsDAO.update(getSagaType(), sagaId, instanceEvents);
   }
 
   private String sendCommands(String sagaId, List<CommandWithDestination> commands) {
@@ -206,10 +209,9 @@ public class SagaManagerImpl<Data>
       String aggregateId = message.getRequiredHeader(Message.PARTITION_ID);
       String eventType = message.getRequiredHeader(EventMessageHeaders.EVENT_TYPE);
       // TODO query the saga event routing table: (at, aId, et) -> [(sagaType, sagaId)]
-   //   for (SagaTypeAndId sagaTypeAndId : aggregateInstanceSubscriptionsDAO.findSagas(aggregateType, aggregateId, eventType)) {
-    //    handleAggregateInstanceEvent(sagaTypeAndId.getSagaType(), sagaTypeAndId.getSagaId(), message, aggregateType, aggregateId, eventType);
-    //  }
-      ;
+      for (SagaTypeAndId sagaTypeAndId : aggregateInstanceSubscriptionsDAO.findSagas(aggregateType, aggregateId, eventType)) {
+        handleAggregateInstanceEvent(sagaTypeAndId.getSagaType(), sagaTypeAndId.getSagaId(), message, aggregateType, aggregateId, eventType);
+      }
 
 
     } else {

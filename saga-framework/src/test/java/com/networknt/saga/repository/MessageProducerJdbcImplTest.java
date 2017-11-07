@@ -32,7 +32,7 @@ public class MessageProducerJdbcImplTest {
         ds = (DataSource) SingletonServiceFactory.getBean(DataSource.class);
        try (Connection connection = ds.getConnection()) {
             // Runscript doesn't work need to execute batch here.
-            String schemaResourceName = "/queryside_ddl.sql";
+            String schemaResourceName = "/saga_repository_ddl.sql";
             InputStream in = MessageProducerJdbcImplTest.class.getResourceAsStream(schemaResourceName);
 
             if (in == null) {

@@ -1,11 +1,6 @@
 package com.networknt.saga.repository;
 
 
-import com.networknt.eventuate.common.impl.JSonMapper;
-import com.networknt.saga.core.command.common.CommandMessageHeaders;
-import com.networknt.saga.core.message.common.Message;
-import com.networknt.saga.core.message.producer.MessageBuilder;
-import com.networknt.saga.core.message.producer.MessageProducer;
 import com.networknt.saga.participant.SagaLockManager;
 import com.networknt.service.SingletonServiceFactory;
 import org.h2.tools.RunScript;
@@ -17,8 +12,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
+
+import static org.junit.Assert.assertTrue;
 
 
 /**
@@ -33,7 +28,7 @@ public class SagaLockManagerImplTest {
         ds = (DataSource) SingletonServiceFactory.getBean(DataSource.class);
        try (Connection connection = ds.getConnection()) {
             // Runscript doesn't work need to execute batch here.
-            String schemaResourceName = "/queryside_ddl.sql";
+            String schemaResourceName = "/saga_repository_ddl.sql";
             InputStream in = SagaLockManagerImplTest.class.getResourceAsStream(schemaResourceName);
 
             if (in == null) {
@@ -58,8 +53,12 @@ public class SagaLockManagerImplTest {
 
     @Test
     public void testClaimLock() {
-        sagaLockManager.claimLock("order.service","22222", "target");
-
+        boolean firstLock  = sagaLockManager.claimLock("order.service","22222", "target");
+        assertTrue(firstLock);
+        boolean lockSameSagaId  = sagaLockManager.claimLock("order.service","22222", "target");
+        assertTrue(lockSameSagaId);
+        boolean lockWithDiffSaga  = sagaLockManager.claimLock("order.service","23456", "target");
+        assertTrue(lockWithDiffSaga);
     }
 
 }
