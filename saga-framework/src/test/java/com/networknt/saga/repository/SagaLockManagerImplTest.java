@@ -13,6 +13,7 @@ import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 
@@ -58,7 +59,7 @@ public class SagaLockManagerImplTest {
         boolean lockSameSagaId  = sagaLockManager.claimLock("order.service","22222", "target");
         assertTrue(lockSameSagaId);
         boolean lockWithDiffSaga  = sagaLockManager.claimLock("order.service","23456", "target");
-        assertTrue(lockWithDiffSaga);
+        assertFalse(lockWithDiffSaga);
     }
 
 }

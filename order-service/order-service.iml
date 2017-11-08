@@ -26,6 +26,7 @@
     <orderEntry type="library" scope="RUNTIME" name="Maven: net.bytebuddy:byte-buddy:1.7.4" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: net.bytebuddy:byte-buddy-agent:1.7.4" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.objenesis:objenesis:2.6" level="project" />
+    <orderEntry type="module" module-name="saga-dsl" />
     <orderEntry type="library" name="Maven: com.networknt:eventuate-common:1.5.0" level="project" />
     <orderEntry type="library" name="Maven: com.networknt:config:1.5.0" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.1" level="project" />
