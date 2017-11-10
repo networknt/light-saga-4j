@@ -166,7 +166,11 @@
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${version.mysql}</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.github.ben-manes.caffeine</groupId>
+                <artifactId>caffeine</artifactId>
+                <version>${version.caffeine}</version>
+            </dependency>
             <!-- Test dependencies -->
             <dependency>
                 <groupId>junit</groupId>
