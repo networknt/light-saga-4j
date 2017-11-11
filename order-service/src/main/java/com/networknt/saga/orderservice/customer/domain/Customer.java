@@ -3,6 +3,7 @@ package com.networknt.saga.orderservice.customer.domain;
 
 
 
+import com.networknt.eventuate.jdbc.IdGeneratorImpl;
 import com.networknt.saga.orderservice.common.Money;
 
 import java.util.Collections;
@@ -28,7 +29,12 @@ public class Customer {
   public Customer() {
   }
 
+  public void setId(Long id) {
+    this.id = id;
+  }
+
   public Customer(String name, Money creditLimit) {
+  //  this.id = new IdGeneratorImpl().genId().getHi();
     this.name = name;
     this.creditLimit = creditLimit;
     this.creditReservations = Collections.emptyMap();

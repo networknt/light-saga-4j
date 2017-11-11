@@ -15,6 +15,10 @@ public class CustomerCommandHandler {
 
   private CustomerRepository customerRepository;
 
+  public CustomerCommandHandler(CustomerRepository customerRepository) {
+    this.customerRepository = customerRepository;
+  }
+
   public CommandHandlers commandHandlerDefinitions() {
     return SagaCommandHandlersBuilder
             .fromChannel("customerService")

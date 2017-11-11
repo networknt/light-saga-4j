@@ -12,3 +12,17 @@ singletons:
   - com.networknt.saga.repository.SagaInstanceRepositoryJdbc
 - com.networknt.saga.participant.SagaLockManager:
   - com.networknt.saga.repository.SagaLockManagerImpl
+- com.networknt.saga.orderservice.customer.domain.CustomerRepository:
+  - com.networknt.saga.orderservice.customer.domain.MapCustomerRepository
+- com.networknt.saga.orderservice.order.domain.OrderRepository:
+  - com.networknt.saga.orderservice.order.domain.MapOrderRepository
+- com.networknt.saga.orderservice.order.saga.createorder.CreateOrderSagaData:
+  - com.networknt.saga.orderservice.order.saga.createorder.CreateOrderSagaData
+- com.networknt.saga.orderservice.customer.service.CustomerService:
+  - com.networknt.saga.orderservice.customer.service.CustomerService
+- com.networknt.saga.orderservice.customer.service.CustomerCommandHandler:
+  - com.networknt.saga.orderservice.customer.service.CustomerCommandHandler
+- com.networknt.saga.orderservice.order.service.OrderCommandHandler:
+  - com.networknt.saga.orderservice.order.service.OrderCommandHandler
+- com.networknt.saga.orderservice.order.saga.createorder.CreateOrderSaga:
+  - com.networknt.saga.orderservice.order.saga.createorder.CreateOrderSaga

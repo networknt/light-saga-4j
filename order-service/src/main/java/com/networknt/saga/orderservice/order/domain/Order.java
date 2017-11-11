@@ -2,6 +2,7 @@ package com.networknt.saga.orderservice.order.domain;
 
 
 
+import com.networknt.eventuate.jdbc.IdGeneratorImpl;
 import com.networknt.saga.core.events.ResultWithEvents;
 
 import java.util.Collections;
@@ -21,8 +22,13 @@ public class Order {
   }
 
   public Order(OrderDetails orderDetails) {
+    //this.id = new IdGeneratorImpl().genId().getHi();
     this.orderDetails = orderDetails;
     this.state = OrderState.PENDING;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public static ResultWithEvents<Order> createOrder(OrderDetails orderDetails) {

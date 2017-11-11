@@ -14,7 +14,11 @@ import static com.networknt.saga.core.command.consumer.CommandHandlerReplyBuilde
 
 public class OrderCommandHandler {
 
-  private OrderRepository<Order, Long> orderRepository;
+  private OrderRepository orderRepository;
+
+  public OrderCommandHandler(OrderRepository orderRepository) {
+    this.orderRepository = orderRepository;
+  }
 
   public CommandHandlers commandHandlerDefinitions() {
     return SagaCommandHandlersBuilder

@@ -9,6 +9,10 @@ public class CustomerService {
 
   private CustomerRepository customerRepository;
 
+  public CustomerService(CustomerRepository customerRepository) {
+    this.customerRepository = customerRepository;
+  }
+
   public Customer createCustomer(String name, Money creditLimit) {
     Customer customer  = new Customer(name, creditLimit);
     return (Customer)customerRepository.save(customer);

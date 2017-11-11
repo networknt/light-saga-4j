@@ -16,6 +16,10 @@ public class OrderService {
 
   private OrderRepository orderRepository;
 
+  public OrderService(OrderRepository orderRepository, SagaManager<CreateOrderSagaData> createOrderSagaManager) {
+    this.orderRepository = orderRepository;
+    this.createOrderSagaManager = createOrderSagaManager;
+  }
 
   public Order createOrder(OrderDetails orderDetails) {
     ResultWithEvents<Order> oe = Order.createOrder(orderDetails);

@@ -2,8 +2,9 @@ package com.networknt.saga.orderservice.customer.domain;
 
 
 import java.io.Serializable;
+import java.util.Map;
 
-public interface CustomerRepository <Customer, ID extends Serializable>{
+public interface CustomerRepository {
 
 
     /**
@@ -15,14 +16,6 @@ public interface CustomerRepository <Customer, ID extends Serializable>{
      */
     <S extends Customer> S save(S entity);
 
-    /**
-     * Saves all given entities.
-     *
-     * @param entities
-     * @return the saved entities
-     * @throws IllegalArgumentException in case the given entity is {@literal null}.
-     */
-    <S extends Customer> Iterable<S> save(Iterable<S> entities);
 
     /**
      * Retrieves an entity by its id.
@@ -31,7 +24,7 @@ public interface CustomerRepository <Customer, ID extends Serializable>{
      * @return the entity with the given id or {@literal null} if none found
      * @throws IllegalArgumentException if {@code id} is {@literal null}
      */
-    Customer findOne(ID id);
+    Customer findOne(Long id);
 
     /**
      * Returns whether an entity with the given id exists.
@@ -40,22 +33,16 @@ public interface CustomerRepository <Customer, ID extends Serializable>{
      * @return true if an entity with the given id exists, {@literal false} otherwise
      * @throws IllegalArgumentException if {@code id} is {@literal null}
      */
-    boolean exists(ID id);
+    boolean exists(Long id);
 
     /**
      * Returns all instances of the type.
      *
      * @return all entities
      */
-    Iterable<Customer> findAll();
+    Map<Long, Customer> findAll();
 
-    /**
-     * Returns all instances of the type with the given IDs.
-     *
-     * @param ids
-     * @return
-     */
-    Iterable<Customer> findAll(Iterable<ID> ids);
+
 
     /**
      * Returns the number of entities available.
@@ -70,23 +57,9 @@ public interface CustomerRepository <Customer, ID extends Serializable>{
      * @param id must not be {@literal null}.
      * @throws IllegalArgumentException in case the given {@code id} is {@literal null}
      */
-    void delete(ID id);
+    void delete(Long id);
 
-    /**
-     * Deletes a given entity.
-     *
-     * @param entity
-     * @throws IllegalArgumentException in case the given entity is {@literal null}.
-     */
-    void delete(Customer entity);
 
-    /**
-     * Deletes the given entities.
-     *
-     * @param entities
-     * @throws IllegalArgumentException in case the given {@link Iterable} is {@literal null}.
-     */
-    void delete(Iterable<? extends Customer> entities);
 
     /**
      * Deletes all entities managed by the repository.
