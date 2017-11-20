@@ -26,3 +26,9 @@ singletons:
   - com.networknt.saga.orderservice.order.service.OrderCommandHandler
 - com.networknt.saga.orderservice.order.saga.createorder.CreateOrderSaga:
   - com.networknt.saga.orderservice.order.saga.createorder.CreateOrderSaga
+- com.networknt.saga.repository.EnlistedAggregatesDao:
+  - com.networknt.saga.repository.EnlistedAggregatesDaoImpl
+- com.networknt.saga.repository.AggregateInstanceSubscriptionsDAO:
+  - com.networknt.saga.repository.AggregateInstanceSubscriptionsDAOImpl
+- com.networknt.saga.core.events.publisher.DomainEventPublisher:
+  - com.networknt.saga.core.events.publisher.DomainEventPublisherImpl

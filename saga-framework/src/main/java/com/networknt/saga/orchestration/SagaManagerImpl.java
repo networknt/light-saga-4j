@@ -3,12 +3,14 @@ package com.networknt.saga.orchestration;
 
 import com.networknt.eventuate.common.impl.JSonMapper;
 import com.networknt.eventuate.jdbc.IdGenerator;
+import com.networknt.eventuate.jdbc.IdGeneratorImpl;
 import com.networknt.saga.common.LockTarget;
 import com.networknt.saga.common.SagaCommandHeaders;
 import com.networknt.saga.common.SagaReplyHeaders;
 import com.networknt.saga.common.SagaUnlockCommand;
 import com.networknt.saga.core.command.common.ChannelMapping;
 import com.networknt.saga.core.command.common.CommandMessageHeaders;
+import com.networknt.saga.core.command.common.DefaultChannelMapping;
 import com.networknt.saga.core.command.common.ReplyMessageHeaders;
 import com.networknt.saga.core.command.consumer.CommandWithDestination;
 import com.networknt.saga.core.events.common.EventMessageHeaders;
@@ -16,11 +18,14 @@ import com.networknt.saga.core.events.publisher.DomainEventPublisher;
 import com.networknt.saga.core.events.subscriber.DomainEventEnvelopeImpl;
 import com.networknt.saga.core.message.common.Message;
 import com.networknt.saga.core.message.consumer.MessageConsumer;
+import com.networknt.saga.core.message.producer.MessageProducer;
 import com.networknt.saga.core.producer.CommandProducer;
+import com.networknt.saga.core.producer.CommandProducerImpl;
 import com.networknt.saga.participant.SagaLockManager;
 import com.networknt.saga.repository.AggregateInstanceSubscriptionsDAO;
 import com.networknt.saga.repository.EnlistedAggregatesDao;
 import com.networknt.saga.repository.SagaInstanceRepository;
+import com.networknt.service.SingletonServiceFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,31 +43,39 @@ public class SagaManagerImpl<Data>
   private Logger logger = LoggerFactory.getLogger(getClass());
   public static final String DEFAULT_STATE_NAME = "default-name";
 
-  private SagaInstanceRepository sagaInstanceRepository;
+  private SagaInstanceRepository sagaInstanceRepository =  (SagaInstanceRepository) SingletonServiceFactory.getBean(SagaInstanceRepository.class);
 
-  private CommandProducer commandProducer;
 
   private MessageConsumer messageConsumer;
 
-  private IdGenerator idGenerator;
+  private IdGenerator idGenerator =  new IdGeneratorImpl();
 
 
+  private AggregateInstanceSubscriptionsDAO aggregateInstanceSubscriptionsDAO =  (AggregateInstanceSubscriptionsDAO) SingletonServiceFactory.getBean(AggregateInstanceSubscriptionsDAO.class);;
 
-  private AggregateInstanceSubscriptionsDAO aggregateInstanceSubscriptionsDAO;
-
-  private EnlistedAggregatesDao enlistedAggregatesDao;
+  private EnlistedAggregatesDao enlistedAggregatesDao = (EnlistedAggregatesDao) SingletonServiceFactory.getBean(EnlistedAggregatesDao.class);
 
 
-  private ChannelMapping channelMapping;
+  private ChannelMapping channelMapping ;
+  private MessageProducer messageProducer =  (MessageProducer) SingletonServiceFactory.getBean(MessageProducer.class);
+  private CommandProducer commandProducer;
 
   private Saga<Data> saga;
 
   public SagaManagerImpl(Saga<Data> saga) {
     this.saga = saga;
+    channelMapping = DefaultChannelMapping.builder().build();
+    commandProducer =  new CommandProducerImpl(messageProducer, channelMapping);
+  }
+
+  public SagaManagerImpl(Saga<Data> saga, ChannelMapping channelMapping) {
+    this.saga = saga;
+    this.channelMapping = channelMapping;
+    commandProducer =  new CommandProducerImpl(messageProducer, channelMapping);
   }
 
 
-  private SagaLockManager sagaLockManager;
+  private SagaLockManager sagaLockManager = (SagaLockManager) SingletonServiceFactory.getBean(SagaLockManager.class);
 
   private DomainEventPublisher domainEventPublisher;
 
@@ -325,7 +338,7 @@ public class SagaManagerImpl<Data>
   }
 
   private void updateEnlistedAggregates(String sagaId, Set<EnlistedAggregate> enlistedAggregates) {
-    // TODO enlistedAggregatesDao.save(sagaId, enlistedAggregates);
+      enlistedAggregatesDao.save(sagaId, enlistedAggregates);
   }
 
   private void maybeUpdateState(SagaInstance sagaInstance, Optional<String> possibleNewState) {

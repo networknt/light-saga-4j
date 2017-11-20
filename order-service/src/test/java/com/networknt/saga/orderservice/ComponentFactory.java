@@ -23,7 +23,7 @@ public class ComponentFactory {
     }
 
     public static SagaManager<CreateOrderSagaData> getSagaManager(Saga<CreateOrderSagaData> saga) {
-        return new SagaManagerImpl<>(saga);
+        return new SagaManagerImpl<>(saga, getChannelMapping(new TramCommandsAndEventsIntegrationData()));
     }
 
 

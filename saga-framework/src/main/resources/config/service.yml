@@ -12,5 +12,9 @@ singletons:
   - com.networknt.saga.repository.SagaInstanceRepositoryJdbc
 - com.networknt.saga.participant.SagaLockManager:
   - com.networknt.saga.repository.SagaLockManagerImpl
-- com.networknt.saga.core.producer.CommandProducer:
-  - com.networknt.saga.core.producer.CommandProducerImpl
+- com.networknt.saga.repository.EnlistedAggregatesDao:
+  - com.networknt.saga.repository.EnlistedAggregatesDaoImpl
+- com.networknt.saga.repository.AggregateInstanceSubscriptionsDAO:
+  - com.networknt.saga.repository.AggregateInstanceSubscriptionsDAOImpl
+- com.networknt.saga.core.events.publisher.DomainEventPublisher:
+  - com.networknt.saga.core.events.publisher.DomainEventPublisherImpl

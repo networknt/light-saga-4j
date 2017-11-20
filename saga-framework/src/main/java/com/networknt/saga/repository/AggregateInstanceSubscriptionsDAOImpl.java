@@ -1,6 +1,5 @@
 package com.networknt.saga.repository;
 
-import com.networknt.saga.orchestration.EnlistedAggregate;
 import com.networknt.saga.orchestration.EventClassAndAggregateId;
 import com.networknt.saga.orchestration.SagaTypeAndId;
 import org.slf4j.Logger;
@@ -35,6 +34,8 @@ public class AggregateInstanceSubscriptionsDAOImpl implements  AggregateInstance
         try (final Connection connection = dataSource.getConnection()) {
             connection.setAutoCommit(false);
             PreparedStatement stmt = connection.prepareStatement(psDelete);
+            stmt.setString(1, sagaType);
+            stmt.setString(2, sagaId);
             stmt.executeUpdate();
             PreparedStatement ps = connection.prepareStatement(psInsert);
             for  (EventClassAndAggregateId eventClassAndAggregateId : eventHandlers) {
