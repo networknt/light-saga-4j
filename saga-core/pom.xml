@@ -26,6 +26,10 @@
             <groupId>com.networknt</groupId>
             <artifactId>eventuate-common</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.networknt</groupId>
+            <artifactId>eventuate-jdbc</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

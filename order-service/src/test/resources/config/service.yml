@@ -6,8 +6,8 @@ singletons:
       jdbcUrl: jdbc:h2:~/test
       username: sa
       password: sa
-- com.networknt.saga.core.message.producer.MessageProducer:
-  - com.networknt.saga.repository.MessageProducerJdbcImpl
+- com.networknt.saga.core.message.producer.MessageProducer,com.networknt.saga.core.message.consumer.MessageConsumer:
+  - com.networknt.saga.core.message.InMemoryMessaging
 - com.networknt.saga.repository.SagaInstanceRepository:
   - com.networknt.saga.repository.SagaInstanceRepositoryJdbc
 - com.networknt.saga.participant.SagaLockManager:

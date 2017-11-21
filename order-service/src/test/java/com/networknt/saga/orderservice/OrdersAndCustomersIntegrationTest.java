@@ -87,6 +87,6 @@ public  class OrdersAndCustomersIntegrationTest {
       TimeUnit.MILLISECONDS.sleep(400);
     }
 
-   // assertEquals(expectedState, order.getState());
+  //  assertEquals(expectedState, order.getState());
   }
 }

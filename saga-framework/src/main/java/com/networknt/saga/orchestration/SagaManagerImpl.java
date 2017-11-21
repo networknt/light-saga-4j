@@ -74,10 +74,17 @@ public class SagaManagerImpl<Data>
     commandProducer =  new CommandProducerImpl(messageProducer, channelMapping);
   }
 
+  public SagaManagerImpl(Saga<Data> saga, ChannelMapping channelMapping, MessageConsumer messageConsumer) {
+    this.saga = saga;
+    this.channelMapping = channelMapping;
+    commandProducer =  new CommandProducerImpl(messageProducer, channelMapping);
+    this.messageConsumer = messageConsumer;
+    messageConsumer.subscribe(saga.getClass().getName() + "-consumer", singleton(channelMapping.transform(makeSagaReplyChannel())), this::handleMessage);
 
+  }
   private SagaLockManager sagaLockManager = (SagaLockManager) SingletonServiceFactory.getBean(SagaLockManager.class);
 
-  private DomainEventPublisher domainEventPublisher;
+  private DomainEventPublisher domainEventPublisher = (DomainEventPublisher) SingletonServiceFactory.getBean(DomainEventPublisher.class);
 
   @Override
   public SagaInstance create(Data sagaData) {
