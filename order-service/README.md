@@ -3,7 +3,7 @@
 A saga implementation to manage distributed transaction across multiple microservices
 
 
-The order service module use in memory data repository and message publish/subscrible to implement end-to-end test for saga process based light-saga framework.
+The order service module use in memory data repository and message publish/subscribe to implement end-to-end test for saga process based light-saga framework.
 
 A saga consists of a series of steps.
 Each step consists of either transaction, a compensating transaction or both.

@@ -75,6 +75,7 @@
         <module>saga-core</module>
         <module>saga-framework</module>
         <module>saga-dsl</module>
+        <module>saga-cdc-mysql-connector</module>
     </modules>
 
     <dependencyManagement>
@@ -133,6 +134,16 @@
             <dependency>
                 <groupId>com.networknt</groupId>
                 <artifactId>eventuate-jdbc</artifactId>
+                <version>${version.light-eventuate}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.networknt</groupId>
+                <artifactId>cdc-common</artifactId>
+                <version>${version.light-eventuate}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.networknt</groupId>
+                <artifactId>cdc-mysql</artifactId>
                 <version>${version.light-eventuate}</version>
             </dependency>
 
