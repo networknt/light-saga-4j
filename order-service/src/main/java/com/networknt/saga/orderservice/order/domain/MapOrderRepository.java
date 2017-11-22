@@ -23,7 +23,7 @@ public class MapOrderRepository implements   OrderRepository{
 
     @Override
     public  Order  save(Order order) {
-        order.setId(Long.valueOf(orders.asMap().size()));
+        order.setId(Long.valueOf(orders.asMap().size()+100));
         this.orders.put(order.getId(), order);
         return order;
 

@@ -7,6 +7,7 @@ import com.networknt.eventuate.jdbc.IdGeneratorImpl;
 import com.networknt.saga.orderservice.common.Money;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -37,7 +38,8 @@ public class Customer {
   //  this.id = new IdGeneratorImpl().genId().getHi();
     this.name = name;
     this.creditLimit = creditLimit;
-    this.creditReservations = Collections.emptyMap();
+  //  this.creditReservations = Collections.emptyMap();
+    this.creditReservations = new HashMap<>();
   }
 
   public Long getId() {

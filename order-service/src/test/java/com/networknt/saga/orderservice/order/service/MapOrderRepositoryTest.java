@@ -7,6 +7,9 @@ import com.networknt.saga.orderservice.order.domain.OrderRepository;
 import com.networknt.service.SingletonServiceFactory;
 import org.junit.Test;
 
+import java.util.Collections;
+import java.util.Map;
+
 import static org.junit.Assert.assertEquals;
 
 public class MapOrderRepositoryTest {
@@ -15,14 +18,14 @@ public class MapOrderRepositoryTest {
 
     @Test
     public void testMapOrderRepository() {
-        for (int i = 0; i < 30; i++) {
+        for (int i = 100; i < 130; i++) {
             OrderDetails orderDetails =  new OrderDetails(i +100L, new Money("123.40"));
             Order order = new Order (orderDetails);
             orderRepository.save(order);
         }
         System.out.println(orderRepository.count());
         assertEquals(30, orderRepository.count());
-        for (int i = 0; i < 30; i++) {
+        for (int i = 100; i < 130; i++) {
             Order order  = orderRepository.findOne(Long.valueOf(i));
             assertEquals(order.getId(), Long.valueOf(i));
         }

@@ -1,9 +1,11 @@
 package com.networknt.saga.orderservice;
 
 
+import com.networknt.saga.core.command.consumer.CommandDispatcher;
 import com.networknt.saga.orchestration.SagaManager;
 import com.networknt.saga.orderservice.common.Money;
 import com.networknt.saga.orderservice.customer.domain.Customer;
+import com.networknt.saga.orderservice.customer.service.CustomerCommandHandler;
 import com.networknt.saga.orderservice.customer.service.CustomerService;
 import com.networknt.saga.orderservice.order.domain.Order;
 import com.networknt.saga.orderservice.order.domain.OrderDetails;
@@ -11,9 +13,12 @@ import com.networknt.saga.orderservice.order.domain.OrderRepository;
 import com.networknt.saga.orderservice.order.domain.OrderState;
 import com.networknt.saga.orderservice.order.saga.createorder.CreateOrderSaga;
 import com.networknt.saga.orderservice.order.saga.createorder.CreateOrderSagaData;
+import com.networknt.saga.orderservice.order.service.OrderCommandHandler;
 import com.networknt.saga.orderservice.order.service.OrderService;
+import com.networknt.saga.participant.SagaLockManager;
 import com.networknt.service.SingletonServiceFactory;
 import org.h2.tools.RunScript;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 
@@ -47,20 +52,34 @@ public  class OrdersAndCustomersIntegrationTest {
       e.printStackTrace();
     }
   }
+   TramCommandsAndEventsIntegrationData tramCommandsAndEventsIntegrationData =  new TramCommandsAndEventsIntegrationData();
 
 
   private CustomerService customerService = (CustomerService)SingletonServiceFactory.getBean(CustomerService.class);
 
   private OrderRepository orderRepository = (OrderRepository)SingletonServiceFactory.getBean(OrderRepository.class);
   private CreateOrderSaga createOrderSaga = (CreateOrderSaga)SingletonServiceFactory.getBean(CreateOrderSaga.class);
-  private SagaManager<CreateOrderSagaData> sagaManager = ComponentFactory.getSagaManager(createOrderSaga);
-
+  private SagaManager<CreateOrderSagaData> sagaManager = ComponentFactory.getSagaManager(createOrderSaga, tramCommandsAndEventsIntegrationData);
+  private SagaLockManager sagaLockManager = (SagaLockManager) SingletonServiceFactory.getBean(SagaLockManager.class);
   private OrderService orderService = new OrderService(orderRepository, sagaManager);
+  private OrderCommandHandler orderCommandHandler = (OrderCommandHandler) SingletonServiceFactory.getBean(OrderCommandHandler.class);
+  private CustomerCommandHandler customerCommandHandler = (CustomerCommandHandler) SingletonServiceFactory.getBean(CustomerCommandHandler.class);
 
+
+  private CommandDispatcher orderCommandDispatcher = ComponentFactory.getOrderCommandDispatcher(orderCommandHandler, sagaLockManager,tramCommandsAndEventsIntegrationData);
+  private CommandDispatcher customerCommandDispatcher = ComponentFactory.getConsumerCommandDispatcher(customerCommandHandler, sagaLockManager,tramCommandsAndEventsIntegrationData);;
 //  private TransactionTemplate transactionTemplate;
+
+  @BeforeClass
+  public static void setUp() {
+
+  }
+
 
   @Test
   public void shouldApproveOrder() throws InterruptedException {
+    orderCommandDispatcher.initialize();
+    customerCommandDispatcher.initialize();
     Money creditLimit = new Money("15.00");
     Customer customer = customerService.createCustomer("Fred", creditLimit);
     Order order = orderService.createOrder(new OrderDetails(customer.getId(), new Money("12.34")));
@@ -70,6 +89,8 @@ public  class OrdersAndCustomersIntegrationTest {
 
   @Test
   public void shouldRejectOrder() throws InterruptedException {
+    orderCommandDispatcher.initialize();
+    customerCommandDispatcher.initialize();
     Money creditLimit = new Money("15.00");
     Customer customer = customerService.createCustomer("Fred", creditLimit);
     Order order = orderService.createOrder(new OrderDetails(customer.getId(), new Money("123.40")));
@@ -84,9 +105,9 @@ public  class OrdersAndCustomersIntegrationTest {
       order = orderRepository.findOne(id);
       if (order.getState() == expectedState)
         break;
-      TimeUnit.MILLISECONDS.sleep(400);
+      TimeUnit.MILLISECONDS.sleep(200);
     }
 
-  //  assertEquals(expectedState, order.getState());
+    assertEquals(expectedState, order.getState());
   }
 }
