@@ -12,3 +12,5 @@ singletons:
   - com.networknt.saga.repository.SagaInstanceRepositoryJdbc
 - com.networknt.saga.participant.SagaLockManager:
   - com.networknt.saga.repository.SagaLockManagerImpl
+- com.networknt.saga.consumer.DuplicateMessageDetector:
+  - com.networknt.saga.repository.SqlTableBasedDuplicateMessageDetector

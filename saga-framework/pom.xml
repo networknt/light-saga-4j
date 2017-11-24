@@ -38,7 +38,10 @@
             <groupId>com.networknt</groupId>
             <artifactId>service</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>com.networknt</groupId>
+            <artifactId>eventuate-kafka</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>

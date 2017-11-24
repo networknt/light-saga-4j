@@ -1,0 +1,17 @@
+version: "2"
+#
+# Services
+#
+services:
+   cdcserver:
+      build: ./saga-cdc-service-mysql
+      volumes:
+        - ./docker/cdcservice/config:/config
+      networks:
+        - localnet
+
+# Networks
+#
+networks:
+  localnet:
+    external: true

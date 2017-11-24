@@ -16,5 +16,7 @@ singletons:
   - com.networknt.saga.repository.EnlistedAggregatesDaoImpl
 - com.networknt.saga.repository.AggregateInstanceSubscriptionsDAO:
   - com.networknt.saga.repository.AggregateInstanceSubscriptionsDAOImpl
+- com.networknt.saga.consumer.DuplicateMessageDetector:
+  - com.networknt.saga.repository.SqlTableBasedDuplicateMessageDetector
 - com.networknt.saga.core.events.publisher.DomainEventPublisher:
   - com.networknt.saga.core.events.publisher.DomainEventPublisherImpl

@@ -1,3 +1,8 @@
+
+create database saga;
+GRANT ALL PRIVILEGES ON saga.* TO 'mysqluser'@'%' WITH GRANT OPTION;
+USE saga;
+
 DROP Table IF Exists message;
 DROP Table IF Exists received_messages;
 DROP Table IF Exists saga_instance;
@@ -11,9 +16,9 @@ CREATE TABLE message (
   ID VARCHAR(120) PRIMARY KEY,
   DESTINATION VARCHAR(1000) NOT NULL,
   HEADERS VARCHAR(1000) NOT NULL,
-  PAYLOAD VARCHAR(1000) NOT NULL
+  PAYLOAD VARCHAR(1000) NOT NULL,
+  PRIMARY KEY(ID)
 );
-
 
 CREATE TABLE received_messages (
   CONSUMER_ID VARCHAR(120),
