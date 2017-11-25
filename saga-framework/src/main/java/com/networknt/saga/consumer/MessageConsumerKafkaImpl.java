@@ -21,13 +21,16 @@ public class MessageConsumerKafkaImpl implements MessageConsumer {
 
   private Logger logger = LoggerFactory.getLogger(getClass());
 
-  private String bootstrapServers;
+  //private String bootstrapServers;
   private List<EventuateKafkaConsumer> consumers = new ArrayList<>();
 
-  public MessageConsumerKafkaImpl(String bootstrapServers) {
+ /* public MessageConsumerKafkaImpl(String bootstrapServers) {
     this.bootstrapServers = bootstrapServers;
-  }
+  }*/
 
+   public MessageConsumerKafkaImpl() {
+
+  }
 
   //private TransactionTemplate transactionTemplate;
 
@@ -36,12 +39,26 @@ public class MessageConsumerKafkaImpl implements MessageConsumer {
 
   @Override
   public void subscribe(String subscriberId, Set<String> channels, MessageHandler handler) {
-  /*  BiConsumer<ConsumerRecord<String, String>, BiConsumer<Void, Throwable>> kcHandler = (record, callback) -> {
+    BiConsumer<ConsumerRecord<String, String>, BiConsumer<Void, Throwable>> kcHandler = (record, callback) -> {
       Message m = toMessage(record);
 
       // TODO If we do that here then remove TT from higher-levels
 
-      transactionTemplate.execute(ts -> {
+      if (duplicateMessageDetector.isDuplicate(subscriberId, m.getId())) {
+        logger.trace("Duplicate message {} {}", subscriberId, m.getId());
+        callback.accept(null, null);
+      }
+      try {
+        logger.trace("Invoking handler {} {}", subscriberId, m.getId());
+        handler.accept(m);
+      } catch (Throwable t) {
+        logger.trace("Got exception {} {}", subscriberId, m.getId());
+        logger.trace("Got exception ", t);
+        callback.accept(null, t);
+      }
+      logger.trace("handled message {} {}", subscriberId, m.getId());
+      callback.accept(null, null);
+  /*    transactionTemplate.execute(ts -> {
         if (duplicateMessageDetector.isDuplicate(subscriberId, m.getId())) {
           logger.trace("Duplicate message {} {}", subscriberId, m.getId());
           callback.accept(null, null);
@@ -59,12 +76,12 @@ public class MessageConsumerKafkaImpl implements MessageConsumer {
         logger.trace("handled message {} {}", subscriberId, m.getId());
         callback.accept(null, null);
         return null;
-      });
+      });*/
     };
 
-    EventuateKafkaConsumer kc = new EventuateKafkaConsumer(subscriberId, kcHandler, new ArrayList<>(channels), bootstrapServers);
+    EventuateKafkaConsumer kc = new EventuateKafkaConsumer(subscriberId, kcHandler, new ArrayList<>(channels));
     consumers.add(kc);
-    kc.start();*/
+    kc.start();
   }
 
   public void close() {

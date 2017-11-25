@@ -13,7 +13,7 @@ DROP Table IF Exists saga_stash_table;
 DROP Table IF Exists saga_enlisted_aggregates;
 
 CREATE TABLE message (
-  ID VARCHAR(120) PRIMARY KEY,
+  ID VARCHAR(120),
   DESTINATION VARCHAR(1000) NOT NULL,
   HEADERS VARCHAR(1000) NOT NULL,
   PAYLOAD VARCHAR(1000) NOT NULL,
@@ -55,19 +55,20 @@ CREATE TABLE aggregate_instance_subscriptions(
 );
 
 create table saga_lock_table(
-  target VARCHAR(100) PRIMARY KEY,
+  target VARCHAR(100),
   saga_type VARCHAR(100) NOT NULL,
   saga_Id VARCHAR(100) NOT NULL,
   PRIMARY KEY(target)
 );
 
 create table saga_stash_table(
-  message_id VARCHAR(100) PRIMARY KEY,
+  message_id VARCHAR(100),
   target VARCHAR(100) NOT NULL,
   saga_type VARCHAR(100) NOT NULL,
   saga_id VARCHAR(100) NOT NULL,
   message_headers VARCHAR(1000) NOT NULL,
-  message_payload VARCHAR(1000) NOT NULL
+  message_payload VARCHAR(1000) NOT NULL,
+  PRIMARY KEY(message_id)
   );
 
 create table saga_enlisted_aggregates(
