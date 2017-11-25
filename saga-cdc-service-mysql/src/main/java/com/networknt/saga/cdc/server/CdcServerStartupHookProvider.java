@@ -11,6 +11,7 @@ import com.networknt.saga.cdc.mysql.MessageWithDestination;
 import com.networknt.saga.cdc.mysql.MessageWithDestinationPublishingStrategy;
 import com.networknt.saga.cdc.mysql.WriteRowsEventDataParser;
 import com.networknt.server.StartupHookProvider;
+import com.networknt.service.SingletonServiceFactory;
 import com.zaxxer.hikari.HikariDataSource;
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
