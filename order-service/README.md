@@ -11,6 +11,11 @@ Each transaction is the invocation of a saga participant using a command message
 A saga executes the forward transactions sequentially.
 If one of them fails then the saga executes the compensating transactions in reverse order to rollback the saga.
 
+==workflow diagram
+
+![Saga](static/order-saga.png) 
+
+
 
 == Writing an orchestrator
 

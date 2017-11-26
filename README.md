@@ -22,3 +22,18 @@ You will need:
 4. [Docker][docker]
 5. [MySQL][mysql]
 6. [Docker compose(optional)][docker_compose]
+
+## Project module:
+
+--saga-core: Base components and interface to saga framework; Define saga basic command, event and message;
+
+--saga-framework: Saga framework implementation. Define saga participant, orchestration, and message repository;
+
+--saga-dsl: Base saga definition which includes saga steps definition, saga execution state, etc...
+
+--order-service: End-to-end integration test module for saga framework.
+
+--saga-cdc-mysql-connector: Base components for mysql to kafka binlog data transfer.
+
+--saga-cdc-service-mysql: cdc (capture data change) service for mysql to kafka
+
