@@ -1,5 +1,6 @@
 package com.networknt.saga.cdc.mysql;
 
+import com.apple.eawt.AppEvent;
 import com.github.shyiko.mysql.binlog.event.WriteRowsEventData;
 
 import com.networknt.eventuate.cdc.common.BinlogFileOffset;
@@ -48,7 +49,6 @@ public class WriteRowsEventDataParser implements IWriteRowsEventDataParser<Messa
         throw new RuntimeException(e);
       }
     }
-
     String id = (String)getValue(eventData, ID);
     String destination = (String)getValue(eventData, DESTINATION);
     String payload = (String)getValue(eventData, PAYLOAD);
@@ -71,7 +71,7 @@ public class WriteRowsEventDataParser implements IWriteRowsEventDataParser<Messa
       DatabaseMetaData metaData = connection.getMetaData();
 
       try (ResultSet columnResultSet =
-                   metaData.getColumns(null, "public", sourceTableName, null)) {
+                   metaData.getColumns(null, "public", sourceTableName.toLowerCase(), null)) {
 
         while (columnResultSet.next()) {
           columnOrders.put(columnResultSet.getString("COLUMN_NAME").toLowerCase(),
