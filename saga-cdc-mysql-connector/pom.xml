@@ -33,6 +33,10 @@
             <groupId>com.networknt</groupId>
             <artifactId>cdc-mysql</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.github.shyiko</groupId>
+            <artifactId>mysql-binlog-connector-java</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
