@@ -1,6 +1,5 @@
 package com.networknt.saga.cdc.mysql;
 
-import com.apple.eawt.AppEvent;
 import com.github.shyiko.mysql.binlog.event.WriteRowsEventData;
 
 import com.networknt.eventuate.cdc.common.BinlogFileOffset;
