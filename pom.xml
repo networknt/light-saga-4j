@@ -36,9 +36,8 @@
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <version.light-java>1.5.4</version.light-java>
-        <version.light-java-rest>1.5.4</version.light-java-rest>
-        <version.light-eventuate>1.5.0</version.light-eventuate>
+        <version.light-4j>1.5.4</version.light-4j>
+        <version.light-eventuate-4j>1.5.4</version.light-eventuate-4j>
         <version.jackson>2.9.1</version.jackson>
         <version.slf4j>1.7.25</version.slf4j>
         <version.jose4j>0.6.1</version.jose4j>
@@ -111,62 +110,62 @@
             <dependency>
                 <groupId>com.networknt</groupId>
                 <artifactId>config</artifactId>
-                <version>${version.light-java}</version>
+                <version>${version.light-4j}</version>
             </dependency>
             <dependency>
                 <groupId>com.networknt</groupId>
                 <artifactId>utility</artifactId>
-                <version>${version.light-java}</version>
+                <version>${version.light-4j}</version>
             </dependency>
             <dependency>
                 <groupId>com.networknt</groupId>
                 <artifactId>body</artifactId>
-                <version>${version.light-java}</version>
+                <version>${version.light-4j}</version>
             </dependency>
             <dependency>
                 <groupId>com.networknt</groupId>
                 <artifactId>server</artifactId>
-                <version>${version.light-java}</version>
+                <version>${version.light-4j}</version>
             </dependency>
             <dependency>
                 <groupId>com.networknt</groupId>
                 <artifactId>client</artifactId>
-                <version>${version.light-java}</version>
+                <version>${version.light-4j}</version>
             </dependency>
             <dependency>
                 <groupId>com.networknt</groupId>
                 <artifactId>service</artifactId>
-                <version>${version.light-java}</version>
+                <version>${version.light-4j}</version>
             </dependency>
             <dependency>
                 <groupId>com.networknt</groupId>
                 <artifactId>handler</artifactId>
-                <version>${version.light-java}</version>
+                <version>${version.light-4j}</version>
             </dependency>
             <dependency>
                 <groupId>com.networknt</groupId>
                 <artifactId>eventuate-common</artifactId>
-                <version>${version.light-eventuate}</version>
+                <version>${version.light-eventuate-4j}</version>
             </dependency>
             <dependency>
                 <groupId>com.networknt</groupId>
                 <artifactId>eventuate-jdbc</artifactId>
-                <version>${version.light-eventuate}</version>
+                <version>${version.light-eventuate-4j}</version>
             </dependency>
             <dependency>
                 <groupId>com.networknt</groupId>
                 <artifactId>eventuate-kafka</artifactId>
-                <version>${version.light-eventuate}</version>
+                <version>${version.light-eventuate-4j}</version>
             </dependency>
             <dependency>
                 <groupId>com.networknt</groupId>
                 <artifactId>cdc-common</artifactId>
-                <version>${version.light-eventuate}</version>
+                <version>${version.light-eventuate-4j}</version>
             </dependency>
             <dependency>
                 <groupId>com.networknt</groupId>
                 <artifactId>cdc-mysql</artifactId>
-                <version>${version.light-eventuate}</version>
+                <version>${version.light-eventuate-4j}</version>
             </dependency>
 
             <dependency>

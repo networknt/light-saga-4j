@@ -31,6 +31,7 @@ public class DomainEventEnvelopeImpl<T extends DomainEvent> implements DomainEve
     return message;
   }
 
+  @Override
   public T getEvent() {
     return event;
   }

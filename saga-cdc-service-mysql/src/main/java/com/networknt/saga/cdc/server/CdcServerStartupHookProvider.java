@@ -40,6 +40,7 @@ public class CdcServerStartupHookProvider implements StartupHookProvider {
     public static CuratorFramework curatorFramework;
     public static EventTableChangesToAggregateTopicTranslator<MessageWithDestination> translator;
 
+    @Override
     public void onStartup() {
         CdcStartupValidator cdcStartupValidator = new CdcStartupValidator(cdcConfig.getJdbcUrl(), cdcConfig.getDbUser(), cdcConfig.getDbPass(), cdcConfig.getKafka());
         cdcStartupValidator.validateEnvironment();

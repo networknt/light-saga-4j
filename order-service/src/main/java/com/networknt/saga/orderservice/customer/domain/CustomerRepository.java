@@ -11,8 +11,9 @@ public interface CustomerRepository {
      * Saves a given entity. Use the returned instance for further operations as the save operation might have changed the
      * entity instance completely.
      *
-     * @param entity
-     * @return the saved entity
+     * @param entity that is saved
+     * @param <S> the generic type
+     * @return S the saved entity
      */
     <S extends Customer> S save(S entity);
 

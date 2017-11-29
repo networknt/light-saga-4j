@@ -11,6 +11,7 @@ import org.junit.Test;
 import javax.sql.DataSource;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -24,10 +25,10 @@ import static org.junit.Assert.assertTrue;
  */
 public class DuplicatedMessageDetectorTest {
 
-    public static DataSource ds;
+    private static DataSource ds;
 
     static {
-        ds = (DataSource) SingletonServiceFactory.getBean(DataSource.class);
+        ds = SingletonServiceFactory.getBean(DataSource.class);
        try (Connection connection = ds.getConnection()) {
             // Runscript doesn't work need to execute batch here.
             String schemaResourceName = "/saga_repository_ddl.sql";
@@ -36,7 +37,7 @@ public class DuplicatedMessageDetectorTest {
             if (in == null) {
                 throw new RuntimeException("Failed to load resource: " + schemaResourceName);
             }
-            InputStreamReader reader = new InputStreamReader(in);
+            InputStreamReader reader = new InputStreamReader(in, StandardCharsets.UTF_8);
             RunScript.execute(connection, reader);
 
         } catch (SQLException e) {

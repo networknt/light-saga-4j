@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 public class CdcServerShutdownHookProvider implements ShutdownHookProvider {
     protected static Logger logger = LoggerFactory.getLogger(CdcServerShutdownHookProvider.class);
 
+    @Override
     public void onShutdown() {
         if(CdcServerStartupHookProvider.translator != null) {
             try {

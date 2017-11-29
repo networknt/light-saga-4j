@@ -11,7 +11,8 @@ public interface OrderRepository{
      * Saves a given entity. Use the returned instance for further operations as the save operation might have changed the
      * entity instance completely.
      *
-     * @param entity
+     * @param  entity that is saved
+     * @param <S> generic type
      * @return the saved entity
      */
     <S extends Order> S save(S entity);
@@ -61,7 +62,7 @@ public interface OrderRepository{
     /**
      * Deletes a given entity.
      *
-     * @param entity
+     * @param entity order entity
      * @throws IllegalArgumentException in case the given entity is {@literal null}.
      */
     void delete(Order entity);

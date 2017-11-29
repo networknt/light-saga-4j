@@ -25,6 +25,7 @@ public class MessageWithDestination implements BinLogEvent {
     return message;
   }
 
+  @Override
   public BinlogFileOffset getBinlogFileOffset() {
     return binlogFileOffset;
   }

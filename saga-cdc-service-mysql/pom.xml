@@ -48,10 +48,6 @@
             <artifactId>cdc-mysql</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.networknt</groupId>
-            <artifactId>eventuate-kafka</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
         </dependency>

@@ -9,14 +9,10 @@ import io.undertow.server.HttpServerExchange;
  * CdcServer handle
  */
 public class CdcServer implements HandlerProvider {
-
+    @Override
     public HttpHandler getHandler() {
         return Handlers.path()
-                .addPrefixPath("/", new HttpHandler() {
-                            public void handleRequest(HttpServerExchange exchange) {
-                                exchange.getResponseSender().send("OK!");
-                            }
-                        }
+                .addPrefixPath("/", exchange -> exchange.getResponseSender().send("OK!")
                 );
     }
 }

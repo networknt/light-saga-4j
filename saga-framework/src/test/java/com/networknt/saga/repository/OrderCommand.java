@@ -3,6 +3,9 @@ package com.networknt.saga.repository;
 
 import com.networknt.eventuate.common.Command;
 
+/**
+ * Order command model.
+ */
 public class OrderCommand implements Command {
 
   private long orderId;

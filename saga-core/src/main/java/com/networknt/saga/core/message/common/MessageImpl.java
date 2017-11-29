@@ -23,6 +23,7 @@ public class MessageImpl implements Message {
     return ToStringBuilder.reflectionToString(this);
   }
 
+  @Override
   public String getPayload() {
     return payload;
   }
