@@ -1,6 +1,5 @@
 package com.networknt.saga.core.events.subscriber;
 
-
 import com.networknt.saga.core.events.common.DomainEvent;
 import com.networknt.saga.core.message.common.Message;
 import org.apache.commons.lang.builder.ToStringBuilder;

@@ -1,7 +1,5 @@
 package com.networknt.saga.core.events.publisher;
 
-
-
 import com.networknt.saga.core.events.common.DomainEvent;
 
 import java.util.List;

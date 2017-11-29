@@ -1,7 +1,6 @@
 package com.networknt.saga.core.events;
 
 
-
 import com.networknt.saga.core.events.common.DomainEvent;
 
 import java.util.Arrays;

@@ -1,6 +1,5 @@
 package com.networknt.saga.core.events.publisher;
 
-
 import com.networknt.eventuate.common.impl.JSonMapper;
 import com.networknt.saga.core.events.common.DomainEvent;
 import com.networknt.saga.core.events.common.EventMessageHeaders;

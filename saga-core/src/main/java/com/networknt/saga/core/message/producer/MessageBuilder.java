@@ -1,6 +1,5 @@
 package com.networknt.saga.core.message.producer;
 
-
 import com.networknt.saga.core.message.common.Message;
 import com.networknt.saga.core.message.common.MessageImpl;
 
