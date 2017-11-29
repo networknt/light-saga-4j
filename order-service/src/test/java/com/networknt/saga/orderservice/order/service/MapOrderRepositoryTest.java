@@ -10,28 +10,29 @@ import org.junit.Test;
 
 import java.util.Collections;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicLong;
 
 import static org.junit.Assert.assertEquals;
 
 public class MapOrderRepositoryTest {
-
+    private static AtomicLong atomicCustomerId = new AtomicLong();
     private OrderRepository orderRepository = (OrderRepository) SingletonServiceFactory.getBean(OrderRepository.class);
 
     @Test
     public void testMapOrderRepository() {
-        for (int i = 100; i < 130; i++) {
-            OrderDetails orderDetails =  new OrderDetails(i +100L, new Money("123.40"));
+        for (int i = 0; i < 30; i++) {
+            OrderDetails orderDetails =  new OrderDetails(atomicCustomerId.getAndIncrement(), new Money("123.40"));
             Order order = new Order (orderDetails);
             orderRepository.save(order);
         }
-        System.out.println(orderRepository.count());
-        //assertEquals(30, orderRepository.count());
-        Assert.assertTrue(orderRepository.count() >= 30);
-        for (int i = 100; i < 130; i++) {
+        Map<Long, Order> map = orderRepository.findAll();
+        // map.forEach((k, v) -> System.out.println("key = " + k + " id = " + v.getId()));
+        // if you run this test individually, then the count would be 30, however, it you run
+        // all tests together with mvn clean install, another test class created 2 more orders
+        Assert.assertTrue(30 == orderRepository.count() || 32 == orderRepository.count());
+        for (int i = 1; i < 31; i++) {
             Order order  = orderRepository.findOne(Long.valueOf(i));
             assertEquals(order.getId(), Long.valueOf(i));
         }
-
     }
-
 }

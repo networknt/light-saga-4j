@@ -84,7 +84,6 @@ public  class OrdersAndCustomersIntegrationTest {
     Money creditLimit = new Money("15.00");
     Customer customer = customerService.createCustomer("Fred", creditLimit);
     Order order = orderService.createOrder(new OrderDetails(customer.getId(), new Money("12.34")));
-
     assertOrderState(order.getId(), OrderState.APPROVED);
   }
 
@@ -95,7 +94,6 @@ public  class OrdersAndCustomersIntegrationTest {
     Money creditLimit = new Money("15.00");
     Customer customer = customerService.createCustomer("Fred", creditLimit);
     Order order = orderService.createOrder(new OrderDetails(customer.getId(), new Money("123.40")));
-
     assertOrderState(order.getId(), OrderState.REJECTED);
   }
 
@@ -109,7 +107,6 @@ public  class OrdersAndCustomersIntegrationTest {
       TimeUnit.MILLISECONDS.sleep(200);
     }
 
-    //assertEquals(expectedState, order.getState());
-    Assert.assertTrue(OrderState.REJECTED == order.getState() || OrderState.PENDING == order.getState());
+    assertEquals(expectedState, order.getState());
   }
 }
