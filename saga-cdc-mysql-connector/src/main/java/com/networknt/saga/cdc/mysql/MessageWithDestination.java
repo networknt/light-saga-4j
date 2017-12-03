@@ -1,8 +1,8 @@
 package com.networknt.saga.cdc.mysql;
 
 
-import com.networknt.eventuate.cdc.common.BinLogEvent;
-import com.networknt.eventuate.cdc.common.BinlogFileOffset;
+import com.networknt.eventuate.server.common.BinLogEvent;
+import com.networknt.eventuate.server.common.BinlogFileOffset;
 import com.networknt.saga.core.message.common.MessageImpl;
 
 

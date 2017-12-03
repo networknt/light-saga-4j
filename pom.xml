@@ -149,7 +149,7 @@
             </dependency>
             <dependency>
                 <groupId>com.networknt</groupId>
-                <artifactId>eventuate-jdbc</artifactId>
+                <artifactId>eventuate-client-jdbc-common</artifactId>
                 <version>${version.light-eventuate-4j}</version>
             </dependency>
             <dependency>
@@ -159,7 +159,7 @@
             </dependency>
             <dependency>
                 <groupId>com.networknt</groupId>
-                <artifactId>cdc-common</artifactId>
+                <artifactId>eventuate-server-common</artifactId>
                 <version>${version.light-eventuate-4j}</version>
             </dependency>
             <dependency>

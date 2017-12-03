@@ -2,7 +2,7 @@ package com.networknt.saga.cdc.mysql;
 
 import com.github.shyiko.mysql.binlog.event.WriteRowsEventData;
 
-import com.networknt.eventuate.cdc.common.BinlogFileOffset;
+import com.networknt.eventuate.server.common.BinlogFileOffset;
 import com.networknt.eventuate.cdc.mysql.IWriteRowsEventDataParser;
 import com.networknt.eventuate.common.impl.JSonMapper;
 import com.networknt.saga.core.message.common.Message;

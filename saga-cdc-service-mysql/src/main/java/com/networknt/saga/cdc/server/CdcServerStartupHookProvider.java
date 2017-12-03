@@ -1,7 +1,7 @@
 package com.networknt.saga.cdc.server;
 
 import com.networknt.config.Config;
-import com.networknt.eventuate.cdc.common.CdcConfig;
+import com.networknt.eventuate.server.common.CdcConfig;
 
 import com.networknt.eventuate.cdc.mysql.*;
 
