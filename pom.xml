@@ -76,8 +76,6 @@
         <module>saga-core</module>
         <module>saga-framework</module>
         <module>saga-dsl</module>
-        <module>saga-cdc-mysql-connector</module>
-        <module>saga-cdc-service-mysql</module>
     </modules>
 
     <dependencyManagement>
@@ -95,16 +93,6 @@
             <dependency>
                 <groupId>com.networknt</groupId>
                 <artifactId>saga-dsl</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.networknt</groupId>
-                <artifactId>saga-cdc-mysql-connector</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.networknt</groupId>
-                <artifactId>saga-cdc-service-mysql</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
