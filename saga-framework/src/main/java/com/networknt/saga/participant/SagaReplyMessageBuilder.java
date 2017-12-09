@@ -4,13 +4,14 @@ package com.networknt.saga.participant;
 
 import com.networknt.eventuate.common.impl.JSonMapper;
 import com.networknt.saga.common.LockTarget;
-import com.networknt.saga.core.command.common.CommandReplyOutcome;
-import com.networknt.saga.core.command.common.ReplyMessageHeaders;
-import com.networknt.saga.core.command.common.Success;
-import com.networknt.saga.core.message.common.Message;
-import com.networknt.saga.core.message.producer.MessageBuilder;
+import com.networknt.tram.command.common.CommandReplyOutcome;
+import com.networknt.tram.command.common.ReplyMessageHeaders;
+import com.networknt.tram.command.common.Success;
+import com.networknt.tram.message.common.Message;
+import com.networknt.tram.message.producer.MessageBuilder;
 
 import java.util.Optional;
+
 
 public class SagaReplyMessageBuilder extends MessageBuilder {
 

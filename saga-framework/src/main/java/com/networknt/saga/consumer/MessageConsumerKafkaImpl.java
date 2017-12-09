@@ -3,11 +3,11 @@ package com.networknt.saga.consumer;
 
 import com.networknt.eventuate.common.impl.JSonMapper;
 import com.networknt.eventuate.kafka.consumer.EventuateKafkaConsumer;
-import com.networknt.saga.core.message.common.Message;
-import com.networknt.saga.core.message.common.MessageImpl;
-import com.networknt.saga.core.message.consumer.MessageConsumer;
-import com.networknt.saga.core.message.consumer.MessageHandler;
 import com.networknt.service.SingletonServiceFactory;
+import com.networknt.tram.message.common.Message;
+import com.networknt.tram.message.common.MessageImpl;
+import com.networknt.tram.message.consumer.MessageConsumer;
+import com.networknt.tram.message.consumer.MessageHandler;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

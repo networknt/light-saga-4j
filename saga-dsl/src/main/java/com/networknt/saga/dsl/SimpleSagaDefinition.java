@@ -2,11 +2,11 @@ package com.networknt.saga.dsl;
 
 
 import com.networknt.eventuate.common.impl.JSonMapper;
-import com.networknt.saga.core.command.common.ReplyMessageHeaders;
-import com.networknt.saga.core.command.consumer.CommandWithDestination;
-import com.networknt.saga.core.events.common.DomainEvent;
-import com.networknt.saga.core.message.common.Message;
 import com.networknt.saga.orchestration.*;
+import com.networknt.tram.command.common.ReplyMessageHeaders;
+import com.networknt.tram.command.consumer.CommandWithDestination;
+import com.networknt.tram.event.common.DomainEvent;
+import com.networknt.tram.message.common.Message;
 
 import java.util.LinkedList;
 import java.util.List;

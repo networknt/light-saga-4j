@@ -3,8 +3,8 @@ package com.networknt.saga.orchestration;
 
 
 
-import com.networknt.saga.core.events.common.DomainEvent;
-import com.networknt.saga.core.message.common.Message;
+import com.networknt.tram.event.common.DomainEvent;
+import com.networknt.tram.message.common.Message;
 
 import java.util.List;
 import java.util.Optional;

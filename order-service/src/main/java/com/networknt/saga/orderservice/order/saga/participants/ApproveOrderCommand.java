@@ -1,7 +1,7 @@
 package com.networknt.saga.orderservice.order.saga.participants;
 
 
-import com.networknt.eventuate.common.Command;
+import com.networknt.tram.command.common.Command;
 
 public class ApproveOrderCommand implements Command {
   private long orderId;

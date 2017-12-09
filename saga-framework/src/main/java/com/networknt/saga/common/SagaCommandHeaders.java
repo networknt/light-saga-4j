@@ -1,7 +1,7 @@
 package com.networknt.saga.common;
 
 
-import com.networknt.saga.core.command.common.CommandMessageHeaders;
+import com.networknt.tram.command.common.CommandMessageHeaders;
 
 public class SagaCommandHeaders {
   public static final String SAGA_TYPE = CommandMessageHeaders.COMMAND_HEADER_PREFIX + "saga_type";

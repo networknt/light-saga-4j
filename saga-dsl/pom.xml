@@ -19,13 +19,19 @@
         </dependency>
         <dependency>
             <groupId>com.networknt</groupId>
-            <artifactId>saga-core</artifactId>
+            <artifactId>saga-framework</artifactId>
         </dependency>
         <dependency>
             <groupId>com.networknt</groupId>
-            <artifactId>saga-framework</artifactId>
+            <artifactId>tram-message</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.networknt</groupId>
+            <artifactId>tram-event</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.networknt</groupId>
+            <artifactId>tram-command</artifactId>
         </dependency>
     </dependencies>
-
-
 </project>

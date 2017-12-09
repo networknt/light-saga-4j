@@ -8,14 +8,14 @@ singletons:
       password: sa
 - com.networknt.saga.core.message.producer.MessageProducer:
   - com.networknt.saga.repository.MessageProducerJdbcImpl
-- com.networknt.saga.repository.SagaInstanceRepository:
-  - com.networknt.saga.repository.SagaInstanceRepositoryJdbc
+- com.networknt.saga.orchestration.SagaInstanceRepository:
+  - com.networknt.saga.orchestration.SagaInstanceRepositoryJdbc
 - com.networknt.saga.participant.SagaLockManager:
-  - com.networknt.saga.repository.SagaLockManagerImpl
-- com.networknt.saga.repository.EnlistedAggregatesDao:
-  - com.networknt.saga.repository.EnlistedAggregatesDaoImpl
-- com.networknt.saga.repository.AggregateInstanceSubscriptionsDAO:
-  - com.networknt.saga.repository.AggregateInstanceSubscriptionsDAOImpl
+  - com.networknt.saga.participant.SagaLockManagerImpl
+- com.networknt.saga.orchestration.EnlistedAggregatesDao:
+  - com.networknt.saga.orchestration.EnlistedAggregatesDaoImpl
+- com.networknt.saga.orchestration.AggregateInstanceSubscriptionsDAO:
+  - com.networknt.saga.orchestration.AggregateInstanceSubscriptionsDAOImpl
 - com.networknt.saga.consumer.DuplicateMessageDetector:
   - com.networknt.saga.repository.SqlTableBasedDuplicateMessageDetector
 - com.networknt.saga.core.events.publisher.DomainEventPublisher:

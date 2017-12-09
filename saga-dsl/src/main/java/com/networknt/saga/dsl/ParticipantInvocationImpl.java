@@ -2,10 +2,10 @@ package com.networknt.saga.dsl;
 
 
 import com.networknt.eventuate.common.Command;
-import com.networknt.saga.core.command.common.CommandReplyOutcome;
-import com.networknt.saga.core.command.common.ReplyMessageHeaders;
-import com.networknt.saga.core.command.consumer.CommandWithDestination;
-import com.networknt.saga.core.message.common.Message;
+import com.networknt.tram.command.common.CommandReplyOutcome;
+import com.networknt.tram.command.common.ReplyMessageHeaders;
+import com.networknt.tram.command.consumer.CommandWithDestination;
+import com.networknt.tram.message.common.Message;
 
 import java.util.function.Function;
 

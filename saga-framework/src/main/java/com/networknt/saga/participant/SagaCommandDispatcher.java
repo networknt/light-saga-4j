@@ -5,14 +5,14 @@ import com.networknt.saga.common.LockTarget;
 import com.networknt.saga.common.SagaCommandHeaders;
 import com.networknt.saga.common.SagaReplyHeaders;
 import com.networknt.saga.common.SagaUnlockCommand;
-import com.networknt.saga.core.command.common.ChannelMapping;
-import com.networknt.saga.core.command.common.CommandMessageHeaders;
-import com.networknt.saga.core.command.consumer.*;
-import com.networknt.saga.core.message.common.Message;
-import com.networknt.saga.core.message.consumer.MessageConsumer;
-import com.networknt.saga.core.message.producer.MessageBuilder;
-import com.networknt.saga.core.message.producer.MessageProducer;
 import com.networknt.service.SingletonServiceFactory;
+import com.networknt.tram.command.common.ChannelMapping;
+import com.networknt.tram.command.common.CommandMessageHeaders;
+import com.networknt.tram.command.consumer.*;
+import com.networknt.tram.message.common.Message;
+import com.networknt.tram.message.consumer.MessageConsumer;
+import com.networknt.tram.message.producer.MessageBuilder;
+import com.networknt.tram.message.producer.MessageProducer;
 
 import java.util.List;
 import java.util.Map;
@@ -27,10 +27,6 @@ public class SagaCommandDispatcher extends CommandDispatcher {
                                MessageConsumer messageConsumer, MessageProducer messageProducer, SagaLockManager sagaLockManager) {
     super(commandDispatcherId, target, channelMapping, messageConsumer, messageProducer);
     this.sagaLockManager = sagaLockManager;
-  }
-
-  public SagaCommandDispatcher(String commandDispatcherId, CommandHandlers target) {
-    super(commandDispatcherId, target);
   }
 
   @Override

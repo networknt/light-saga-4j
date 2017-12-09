@@ -1,8 +1,8 @@
 package com.networknt.saga.orderservice.order.saga.participants;
 
 
-import com.networknt.eventuate.common.Command;
 import com.networknt.saga.orderservice.common.Money;
+import com.networknt.tram.command.common.Command;
 
 public class ReserveCreditCommand implements Command {
   private Long orderId;

@@ -1,7 +1,6 @@
 package com.networknt.saga.orderservice;
 
 
-import com.networknt.saga.core.command.consumer.CommandDispatcher;
 import com.networknt.saga.orchestration.SagaManager;
 import com.networknt.saga.orderservice.common.Money;
 import com.networknt.saga.orderservice.customer.domain.Customer;
@@ -17,6 +16,7 @@ import com.networknt.saga.orderservice.order.service.OrderCommandHandler;
 import com.networknt.saga.orderservice.order.service.OrderService;
 import com.networknt.saga.participant.SagaLockManager;
 import com.networknt.service.SingletonServiceFactory;
+import com.networknt.tram.command.consumer.CommandDispatcher;
 import org.h2.tools.RunScript;
 import org.junit.Assert;
 import org.junit.BeforeClass;

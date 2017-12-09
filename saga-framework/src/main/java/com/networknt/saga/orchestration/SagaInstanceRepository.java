@@ -1,7 +1,5 @@
-package com.networknt.saga.repository;
+package com.networknt.saga.orchestration;
 
-import com.networknt.saga.orchestration.SagaInstance;
-import com.networknt.saga.orchestration.SagaInstanceData;
 
 public interface SagaInstanceRepository {
 

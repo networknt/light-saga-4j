@@ -3,8 +3,9 @@ package com.networknt.saga.orchestration;
 
 
 
-import com.networknt.saga.core.events.common.DomainEvent;
-import com.networknt.saga.core.events.subscriber.DomainEventEnvelope;
+
+import com.networknt.tram.event.common.DomainEvent;
+import com.networknt.tram.event.subscriber.DomainEventEnvelope;
 
 import java.util.function.Function;
 

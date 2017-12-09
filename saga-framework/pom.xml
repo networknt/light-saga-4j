@@ -24,15 +24,23 @@
         </dependency>
         <dependency>
             <groupId>com.networknt</groupId>
-            <artifactId>saga-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.networknt</groupId>
             <artifactId>eventuate-common</artifactId>
         </dependency>
         <dependency>
             <groupId>com.networknt</groupId>
             <artifactId>eventuate-client-jdbc-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.networknt</groupId>
+            <artifactId>tram-message</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.networknt</groupId>
+            <artifactId>tram-event</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.networknt</groupId>
+            <artifactId>tram-command</artifactId>
         </dependency>
         <dependency>
             <groupId>com.networknt</groupId>

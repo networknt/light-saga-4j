@@ -1,16 +1,17 @@
 package com.networknt.saga.orderservice.order.service;
 
 
-import com.networknt.saga.core.command.consumer.CommandHandlers;
-import com.networknt.saga.core.command.consumer.CommandMessage;
-import com.networknt.saga.core.message.common.Message;
 import com.networknt.saga.orderservice.order.domain.Order;
 import com.networknt.saga.orderservice.order.domain.OrderRepository;
 import com.networknt.saga.orderservice.order.saga.participants.ApproveOrderCommand;
 import com.networknt.saga.orderservice.order.saga.participants.RejectOrderCommand;
 import com.networknt.saga.participant.SagaCommandHandlersBuilder;
+import com.networknt.tram.command.consumer.CommandHandlers;
+import com.networknt.tram.command.consumer.CommandMessage;
+import com.networknt.tram.message.common.Message;
 
-import static com.networknt.saga.core.command.consumer.CommandHandlerReplyBuilder.withSuccess;
+import static com.networknt.tram.command.consumer.CommandHandlerReplyBuilder.withSuccess;
+
 
 public class OrderCommandHandler {
 

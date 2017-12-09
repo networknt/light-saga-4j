@@ -3,7 +3,7 @@ package com.networknt.saga.participant;
 
 
 import com.networknt.saga.common.LockTarget;
-import com.networknt.saga.core.message.common.MessageImpl;
+import com.networknt.tram.message.common.MessageImpl;
 
 import java.util.Map;
 import java.util.Optional;

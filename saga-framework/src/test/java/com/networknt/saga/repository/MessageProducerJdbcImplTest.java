@@ -2,11 +2,11 @@ package com.networknt.saga.repository;
 
 
 import com.networknt.eventuate.common.impl.JSonMapper;
-import com.networknt.saga.core.command.common.CommandMessageHeaders;
-import com.networknt.saga.core.message.common.Message;
-import com.networknt.saga.core.message.producer.MessageBuilder;
-import com.networknt.saga.core.message.producer.MessageProducer;
 import com.networknt.service.SingletonServiceFactory;
+import com.networknt.tram.command.common.CommandMessageHeaders;
+import com.networknt.tram.message.common.Message;
+import com.networknt.tram.message.producer.MessageBuilder;
+import com.networknt.tram.message.producer.MessageProducer;
 import org.h2.tools.RunScript;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -47,7 +47,7 @@ public class MessageProducerJdbcImplTest {
         }
     }
 
-    private MessageProducer  messageProducer= (MessageProducer) SingletonServiceFactory.getBean(MessageProducer.class);
+    private MessageProducer messageProducer= (MessageProducer) SingletonServiceFactory.getBean(MessageProducer.class);
 
 
     private static String destination;

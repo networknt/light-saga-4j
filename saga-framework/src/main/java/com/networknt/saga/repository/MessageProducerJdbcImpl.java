@@ -4,8 +4,8 @@ package com.networknt.saga.repository;
 import com.networknt.eventuate.common.impl.JSonMapper;
 import com.networknt.eventuate.jdbc.IdGenerator;
 import com.networknt.eventuate.jdbc.IdGeneratorImpl;
-import com.networknt.saga.core.message.common.Message;
-import com.networknt.saga.core.message.producer.MessageProducer;
+import com.networknt.tram.message.common.Message;
+import com.networknt.tram.message.producer.MessageProducer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

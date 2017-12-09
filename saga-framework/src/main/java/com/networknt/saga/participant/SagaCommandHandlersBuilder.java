@@ -3,10 +3,10 @@ package com.networknt.saga.participant;
 
 
 
-import com.networknt.saga.core.command.consumer.CommandHandler;
-import com.networknt.saga.core.command.consumer.CommandHandlers;
-import com.networknt.saga.core.command.consumer.CommandMessage;
-import com.networknt.saga.core.message.common.Message;
+import com.networknt.tram.command.consumer.CommandHandler;
+import com.networknt.tram.command.consumer.CommandHandlers;
+import com.networknt.tram.command.consumer.CommandMessage;
+import com.networknt.tram.message.common.Message;
 
 import java.util.ArrayList;
 import java.util.Collections;

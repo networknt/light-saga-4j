@@ -1,14 +1,14 @@
 package com.networknt.saga.orderservice.order.saga.createorder;
 
 
-import com.networknt.saga.core.command.consumer.CommandWithDestination;
-import com.networknt.saga.core.command.consumer.CommandWithDestinationBuilder;
 import com.networknt.saga.dsl.SimpleSaga;
 import com.networknt.saga.orchestration.SagaDefinition;
 import com.networknt.saga.orderservice.common.Money;
 import com.networknt.saga.orderservice.order.saga.participants.ApproveOrderCommand;
 import com.networknt.saga.orderservice.order.saga.participants.RejectOrderCommand;
 import com.networknt.saga.orderservice.order.saga.participants.ReserveCreditCommand;
+import com.networknt.tram.command.consumer.CommandWithDestination;
+import com.networknt.tram.command.consumer.CommandWithDestinationBuilder;
 
 public class CreateOrderSaga implements SimpleSaga<CreateOrderSagaData> {
 

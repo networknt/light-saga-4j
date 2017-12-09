@@ -1,7 +1,7 @@
 package com.networknt.saga.orchestration;
 
 
-import com.networknt.saga.core.events.common.DomainEvent;
+import com.networknt.tram.event.common.DomainEvent;
 
 import java.util.List;
 

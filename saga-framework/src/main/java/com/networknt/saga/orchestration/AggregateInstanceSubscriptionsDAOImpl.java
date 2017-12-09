@@ -1,5 +1,6 @@
-package com.networknt.saga.repository;
+package com.networknt.saga.orchestration;
 
+import com.networknt.saga.orchestration.AggregateInstanceSubscriptionsDAO;
 import com.networknt.saga.orchestration.EventClassAndAggregateId;
 import com.networknt.saga.orchestration.SagaTypeAndId;
 import org.slf4j.Logger;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class AggregateInstanceSubscriptionsDAOImpl implements  AggregateInstanceSubscriptionsDAO{
+public class AggregateInstanceSubscriptionsDAOImpl implements AggregateInstanceSubscriptionsDAO {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
     private DataSource dataSource;

@@ -1,7 +1,7 @@
 package com.networknt.saga.common;
 
 
-import com.networknt.saga.core.command.common.CommandMessageHeaders;
+import com.networknt.tram.command.common.CommandMessageHeaders;
 
 public class SagaReplyHeaders {
 

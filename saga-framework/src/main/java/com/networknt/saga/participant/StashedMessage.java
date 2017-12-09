@@ -1,7 +1,7 @@
 package com.networknt.saga.participant;
 
 
-import com.networknt.saga.core.message.common.Message;
+import com.networknt.tram.message.common.Message;
 
 public class StashedMessage {
   private String sagaType;

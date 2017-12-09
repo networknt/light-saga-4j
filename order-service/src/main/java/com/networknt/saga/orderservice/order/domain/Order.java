@@ -1,9 +1,7 @@
 package com.networknt.saga.orderservice.order.domain;
 
 
-
-import com.networknt.eventuate.jdbc.IdGeneratorImpl;
-import com.networknt.saga.core.events.ResultWithEvents;
+import com.networknt.tram.event.ResultWithEvents;
 
 import java.util.Collections;
 

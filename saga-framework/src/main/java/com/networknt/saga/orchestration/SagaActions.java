@@ -2,7 +2,8 @@ package com.networknt.saga.orchestration;
 
 
 
-import com.networknt.saga.core.command.consumer.CommandWithDestination;
+
+import com.networknt.tram.command.consumer.CommandWithDestination;
 
 import java.util.List;
 import java.util.Optional;

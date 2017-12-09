@@ -1,7 +1,7 @@
 package com.networknt.saga.dsl;
 
-import com.networknt.saga.core.command.consumer.CommandWithDestination;
 import com.networknt.saga.orchestration.SagaDefinition;
+import com.networknt.tram.command.consumer.CommandWithDestination;
 
 import java.util.HashMap;
 import java.util.Map;

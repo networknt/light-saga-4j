@@ -3,6 +3,7 @@ package com.networknt.saga.repository;
 
 import com.networknt.saga.orchestration.DestinationAndResource;
 import com.networknt.saga.orchestration.SagaInstance;
+import com.networknt.saga.orchestration.SagaInstanceRepository;
 import com.networknt.saga.orchestration.SerializedSagaData;
 import com.networknt.service.SingletonServiceFactory;
 import org.h2.tools.RunScript;
@@ -47,7 +48,7 @@ public class SagaInstanceRepositoryTest {
         }
     }
 
-    private SagaInstanceRepository  sagaInstanceRepository = (SagaInstanceRepository) SingletonServiceFactory.getBean(SagaInstanceRepository.class);
+    private SagaInstanceRepository sagaInstanceRepository = (SagaInstanceRepository) SingletonServiceFactory.getBean(SagaInstanceRepository.class);
 
 
     private static SagaInstance sagaInstance;

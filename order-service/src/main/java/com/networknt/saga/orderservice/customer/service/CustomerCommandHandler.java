@@ -1,14 +1,14 @@
 package com.networknt.saga.orderservice.customer.service;
 
-import com.networknt.saga.core.command.consumer.CommandHandlerReplyBuilder;
-import com.networknt.saga.core.command.consumer.CommandHandlers;
-import com.networknt.saga.core.command.consumer.CommandMessage;
-import com.networknt.saga.core.message.common.Message;
 import com.networknt.saga.orderservice.customer.domain.Customer;
 import com.networknt.saga.orderservice.customer.domain.CustomerCreditLimitExceededException;
 import com.networknt.saga.orderservice.customer.domain.CustomerRepository;
 import com.networknt.saga.orderservice.order.saga.participants.ReserveCreditCommand;
 import com.networknt.saga.participant.SagaCommandHandlersBuilder;
+import com.networknt.tram.command.consumer.CommandHandlerReplyBuilder;
+import com.networknt.tram.command.consumer.CommandHandlers;
+import com.networknt.tram.command.consumer.CommandMessage;
+import com.networknt.tram.message.common.Message;
 
 
 public class CustomerCommandHandler {

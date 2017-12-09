@@ -1,7 +1,8 @@
-package com.networknt.saga.repository;
+package com.networknt.saga.orchestration;
 
 
 import com.networknt.saga.orchestration.EnlistedAggregate;
+import com.networknt.saga.orchestration.EnlistedAggregatesDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,7 +14,7 @@ import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 
-public class EnlistedAggregatesDaoImpl implements EnlistedAggregatesDao{
+public class EnlistedAggregatesDaoImpl implements EnlistedAggregatesDao {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
     private DataSource dataSource;

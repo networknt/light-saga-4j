@@ -3,10 +3,10 @@ package com.networknt.saga.participant;
 
 
 import com.networknt.saga.common.LockTarget;
-import com.networknt.saga.core.command.consumer.CommandHandlers;
-import com.networknt.saga.core.command.consumer.CommandMessage;
-import com.networknt.saga.core.command.consumer.PathVariables;
-import com.networknt.saga.core.message.common.Message;
+import com.networknt.tram.command.consumer.CommandHandlers;
+import com.networknt.tram.command.consumer.CommandMessage;
+import com.networknt.tram.command.consumer.PathVariables;
+import com.networknt.tram.message.common.Message;
 
 import java.util.List;
 import java.util.Optional;
