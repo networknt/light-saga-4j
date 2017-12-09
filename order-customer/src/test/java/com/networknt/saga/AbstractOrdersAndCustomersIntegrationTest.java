@@ -9,13 +9,38 @@ import com.networknt.saga.order.domain.OrderRepository;
 import com.networknt.saga.order.domain.OrderState;
 import com.networknt.saga.order.service.OrderService;
 import com.networknt.service.SingletonServiceFactory;
+import org.h2.tools.RunScript;
 import org.junit.Test;
 
+import javax.sql.DataSource;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 
 public abstract class AbstractOrdersAndCustomersIntegrationTest {
+
+  static {
+    DataSource ds = (DataSource) SingletonServiceFactory.getBean(DataSource.class);
+    try (Connection connection = ds.getConnection()) {
+      // Runscript doesn't work need to execute batch here.
+      String schemaResourceName = "/saga_repository_ddl.sql";
+      InputStream in = OrdersAndCustomersIntegrationIT.class.getResourceAsStream(schemaResourceName);
+
+      if (in == null) {
+        throw new RuntimeException("Failed to load resource: " + schemaResourceName);
+      }
+      InputStreamReader reader = new InputStreamReader(in);
+      RunScript.execute(connection, reader);
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    SingletonServiceFactory.setBean(DataSource.class.getName(), ds);
+  }
 
   private CustomerService customerService = SingletonServiceFactory.getBean(CustomerService.class);
 
