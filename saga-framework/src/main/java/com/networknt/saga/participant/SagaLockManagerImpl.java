@@ -21,12 +21,9 @@ public class SagaLockManagerImpl implements SagaLockManager {
   private Logger logger = LoggerFactory.getLogger(getClass());
   private DataSource dataSource;
 
-
   public SagaLockManagerImpl(DataSource dataSource) {
     this.dataSource = dataSource;
   }
-
-  public void setDataSource(DataSource dataSource) {this.dataSource = dataSource;}
 
   @Override
   public boolean claimLock(String sagaType, String sagaId, String target) {

@@ -73,9 +73,9 @@
     </properties>
 
     <modules>
-        <module>order-service</module>
         <module>saga-framework</module>
         <module>saga-dsl</module>
+        <module>order-customer</module>
     </modules>
 
     <dependencyManagement>
@@ -88,6 +88,11 @@
             <dependency>
                 <groupId>com.networknt</groupId>
                 <artifactId>saga-dsl</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.networknt</groupId>
+                <artifactId>order-customer</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -163,6 +168,11 @@
             <dependency>
                 <groupId>com.networknt</groupId>
                 <artifactId>tram-command</artifactId>
+                <version>${version.light-tram-4j}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.networknt</groupId>
+                <artifactId>tram-in-memory</artifactId>
                 <version>${version.light-tram-4j}</version>
             </dependency>
 

@@ -47,7 +47,6 @@ public class MessageProducerJdbcImplTest {
         }
     }
 
-    private MessageProducer messageProducer= (MessageProducer) SingletonServiceFactory.getBean(MessageProducer.class);
 
 
     private static String destination;
@@ -69,6 +68,7 @@ public class MessageProducerJdbcImplTest {
 
     @Test
     public void testSend() {
+        MessageProducer messageProducer = SingletonServiceFactory.getBean(MessageProducer.class);
         messageProducer.send(destination, message);
     }
 

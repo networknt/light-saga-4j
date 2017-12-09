@@ -3,6 +3,7 @@ package com.networknt.saga.orchestration;
 
 import com.networknt.saga.orchestration.EnlistedAggregate;
 import com.networknt.saga.orchestration.EnlistedAggregatesDao;
+import com.networknt.service.SingletonServiceFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,14 +18,11 @@ import java.util.Set;
 public class EnlistedAggregatesDaoImpl implements EnlistedAggregatesDao {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
-    private DataSource dataSource;
+    private DataSource dataSource = SingletonServiceFactory.getBean(DataSource.class);
 
 
-    public EnlistedAggregatesDaoImpl(DataSource dataSource) {
-        this.dataSource = dataSource;
+    public EnlistedAggregatesDaoImpl() {
     }
-
-    public void setDataSource(DataSource dataSource) {this.dataSource = dataSource;}
 
 
   @Override

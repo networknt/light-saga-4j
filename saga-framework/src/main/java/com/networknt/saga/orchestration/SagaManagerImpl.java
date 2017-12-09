@@ -3,7 +3,6 @@ package com.networknt.saga.orchestration;
 
 import com.networknt.eventuate.common.impl.JSonMapper;
 import com.networknt.eventuate.jdbc.IdGenerator;
-import com.networknt.eventuate.jdbc.IdGeneratorImpl;
 import com.networknt.saga.common.LockTarget;
 import com.networknt.saga.common.SagaCommandHeaders;
 import com.networknt.saga.common.SagaReplyHeaders;
@@ -12,11 +11,9 @@ import com.networknt.saga.participant.SagaLockManager;
 import com.networknt.service.SingletonServiceFactory;
 import com.networknt.tram.command.common.ChannelMapping;
 import com.networknt.tram.command.common.CommandMessageHeaders;
-import com.networknt.tram.command.common.DefaultChannelMapping;
 import com.networknt.tram.command.common.ReplyMessageHeaders;
 import com.networknt.tram.command.consumer.CommandWithDestination;
 import com.networknt.tram.command.producer.CommandProducer;
-import com.networknt.tram.command.producer.CommandProducerImpl;
 import com.networknt.tram.event.common.EventMessageHeaders;
 import com.networknt.tram.event.publisher.DomainEventPublisher;
 import com.networknt.tram.event.subscriber.DomainEventEnvelopeImpl;
@@ -40,48 +37,24 @@ public class SagaManagerImpl<Data>
   private Logger logger = LoggerFactory.getLogger(getClass());
   public static final String DEFAULT_STATE_NAME = "default-name";
 
-  private SagaInstanceRepository sagaInstanceRepository =  (SagaInstanceRepository) SingletonServiceFactory.getBean(SagaInstanceRepository.class);
+  private SagaInstanceRepository sagaInstanceRepository =  SingletonServiceFactory.getBean(SagaInstanceRepository.class);
+  private MessageConsumer messageConsumer = SingletonServiceFactory.getBean(MessageConsumer.class);
+  private IdGenerator idGenerator = SingletonServiceFactory.getBean(IdGenerator.class);
+  private AggregateInstanceSubscriptionsDAO aggregateInstanceSubscriptionsDAO =  SingletonServiceFactory.getBean(AggregateInstanceSubscriptionsDAO.class);;
+  private EnlistedAggregatesDao enlistedAggregatesDao = SingletonServiceFactory.getBean(EnlistedAggregatesDao.class);
+  private ChannelMapping channelMapping = SingletonServiceFactory.getBean(ChannelMapping.class);
+  private MessageProducer messageProducer = SingletonServiceFactory.getBean(MessageProducer.class);
+  private CommandProducer commandProducer = SingletonServiceFactory.getBean(CommandProducer.class);
+  private SagaLockManager sagaLockManager = SingletonServiceFactory.getBean(SagaLockManager.class);
+  private DomainEventPublisher domainEventPublisher = SingletonServiceFactory.getBean(DomainEventPublisher.class);
 
-
-  private MessageConsumer messageConsumer;
-
-  private IdGenerator idGenerator =  new IdGeneratorImpl();
-
-
-  private AggregateInstanceSubscriptionsDAO aggregateInstanceSubscriptionsDAO =  (AggregateInstanceSubscriptionsDAO) SingletonServiceFactory.getBean(AggregateInstanceSubscriptionsDAO.class);;
-
-  private EnlistedAggregatesDao enlistedAggregatesDao = (EnlistedAggregatesDao) SingletonServiceFactory.getBean(EnlistedAggregatesDao.class);
-
-
-  private ChannelMapping channelMapping ;
-  private MessageProducer messageProducer =  (MessageProducer) SingletonServiceFactory.getBean(MessageProducer.class);
-  private CommandProducer commandProducer;
 
   private Saga<Data> saga;
 
   public SagaManagerImpl(Saga<Data> saga) {
     this.saga = saga;
-    channelMapping = DefaultChannelMapping.builder().build();
-    commandProducer =  new CommandProducerImpl(messageProducer, channelMapping);
-  }
-
-  public SagaManagerImpl(Saga<Data> saga, ChannelMapping channelMapping) {
-    this.saga = saga;
-    this.channelMapping = channelMapping;
-    commandProducer =  new CommandProducerImpl(messageProducer, channelMapping);
-  }
-
-  public SagaManagerImpl(Saga<Data> saga, ChannelMapping channelMapping, MessageConsumer messageConsumer) {
-    this.saga = saga;
-    this.channelMapping = channelMapping;
-    commandProducer =  new CommandProducerImpl(messageProducer, channelMapping);
-    this.messageConsumer = messageConsumer;
     messageConsumer.subscribe(saga.getClass().getName() + "-consumer", singleton(channelMapping.transform(makeSagaReplyChannel())), this::handleMessage);
-
   }
-  private SagaLockManager sagaLockManager = (SagaLockManager) SingletonServiceFactory.getBean(SagaLockManager.class);
-
-  private DomainEventPublisher domainEventPublisher = (DomainEventPublisher) SingletonServiceFactory.getBean(DomainEventPublisher.class);
 
   @Override
   public SagaInstance create(Data sagaData) {

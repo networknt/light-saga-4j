@@ -3,6 +3,7 @@ package com.networknt.saga.orchestration;
 import com.networknt.saga.orchestration.AggregateInstanceSubscriptionsDAO;
 import com.networknt.saga.orchestration.EventClassAndAggregateId;
 import com.networknt.saga.orchestration.SagaTypeAndId;
+import com.networknt.service.SingletonServiceFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,14 +19,10 @@ import java.util.List;
 public class AggregateInstanceSubscriptionsDAOImpl implements AggregateInstanceSubscriptionsDAO {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
-    private DataSource dataSource;
+    private DataSource dataSource = SingletonServiceFactory.getBean(DataSource.class);
 
-
-    public AggregateInstanceSubscriptionsDAOImpl(DataSource dataSource) {
-        this.dataSource = dataSource;
+    public AggregateInstanceSubscriptionsDAOImpl() {
     }
-
-    public void setDataSource(DataSource dataSource) {this.dataSource = dataSource;}
 
     @Override
     public void update(String sagaType, String sagaId, List<EventClassAndAggregateId> eventHandlers) {

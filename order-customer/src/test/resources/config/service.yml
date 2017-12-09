@@ -1,0 +1,55 @@
+---
+singletons:
+# As we are using InMemoryMessaging for testing, H2 database is used here.
+- javax.sql.DataSource:
+  - com.zaxxer.hikari.HikariDataSource:
+      DriverClassName: org.h2.jdbcx.JdbcDataSource
+      jdbcUrl: jdbc:h2:~/test
+      username: sa
+      password: sa
+# IdGeneratorImpl implements IdGenerator without any parameter dependency
+- com.networknt.eventuate.jdbc.IdGenerator:
+  - com.networknt.eventuate.jdbc.IdGeneratorImpl
+# InMemoryMessaging implements both MessageProducer and MessageConsumer and depends on IdGenerator
+- com.networknt.tram.message.producer.MessageProducer,com.networknt.tram.message.consumer.MessageConsumer:
+  - com.networknt.tram.inmemory.InMemoryMessaging
+# SagaLockManagerImpl implements SagaLockManager and depends on DataSource.
+- com.networknt.saga.participant.SagaLockManager:
+  - com.networknt.saga.participant.SagaLockManagerImpl
+# MapOrderRepository implements OrderRepository in memory with no other dependency
+- com.networknt.saga.order.domain.OrderRepository:
+  - com.networknt.saga.order.domain.MapOrderRepository
+# MapConsumerRepository implements CustomerRepository with no other dependency
+- com.networknt.saga.customer.domain.CustomerRepository:
+  - com.networknt.saga.customer.domain.MapCustomerRepository
+# OrderCommandHandler depends on OrderRepository defined above
+- com.networknt.saga.order.service.OrderCommandHandler: com.networknt.saga.OrderCustomerServiceInitializer::orderCommandHandler
+# A Java Bean doesn't depend on anything
+- com.networknt.saga.TramCommandsAndEventsIntegrationData: com.networknt.saga.OrderCustomerServiceInitializer::tramCommandsAndEventsIntegrationData
+# ChannelMapping depends on TramCommandsAndEventsIntegrationData
+- com.networknt.tram.command.common.ChannelMapping: com.networknt.saga.OrderCustomerServiceInitializer::channelMapping
+# SagaInstanceRepositoryJdbc depends on IdGenerator and DataSource
+- com.networknt.saga.orchestration.SagaInstanceRepository:
+  - com.networknt.saga.orchestration.SagaInstanceRepositoryJdbc
+# AggregateInstanceSubscriptionsDAOImpl depends on DataSource
+- com.networknt.saga.orchestration.AggregateInstanceSubscriptionsDAO:
+  - com.networknt.saga.orchestration.AggregateInstanceSubscriptionsDAOImpl
+# EnlistedAggregatesDaoImpl depends on DataSource
+- com.networknt.saga.orchestration.EnlistedAggregatesDao:
+  - com.networknt.saga.orchestration.EnlistedAggregatesDaoImpl
+# CommandProducerImpl depends on MessageProducer and ChannelMapping
+- com.networknt.tram.command.producer.CommandProducer:
+  - com.networknt.tram.command.producer.CommandProducerImpl
+# DomainEventPublisherImpl depends on MessageProducer
+- com.networknt.tram.event.publisher.DomainEventPublisher:
+  - com.networknt.tram.event.publisher.DomainEventPublisherImpl
+# CreateOrderSaga doesn't depend on anything
+- com.networknt.saga.order.saga.createorder.CreateOrderSaga: com.networknt.saga.OrderCustomerServiceInitializer::createOrderSaga
+# createOrderSagaManager depends on CreateOrderSaga and a lot other beans above.
+- com.networknt.saga.orchestration.SagaManager: com.networknt.saga.OrderCustomerServiceInitializer::createOrderSagaManager
+# orderService depends on OrderRepository and SagaManager
+- com.networknt.saga.order.service.OrderService: com.networknt.saga.OrderCustomerServiceInitializer::orderService
+# customerService depends on CustomerRepository
+- com.networknt.saga.customer.service.CustomerService: com.networknt.saga.OrderCustomerServiceInitializer::customerService
+# customerCommandHandler depends on CustomerRepository
+- com.networknt.saga.customer.service.CustomerCommandHandler: com.networknt.saga.OrderCustomerServiceInitializer::customerCommandHandler

@@ -3,11 +3,13 @@ package com.networknt.saga.orchestration;
 
 import com.networknt.eventuate.jdbc.IdGenerator;
 import com.networknt.eventuate.jdbc.IdGeneratorImpl;
+import com.networknt.service.SingletonServiceFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
 import javax.sql.DataSource;
+import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,15 +22,11 @@ public class SagaInstanceRepositoryJdbc implements SagaInstanceRepository {
 
   private Logger logger = LoggerFactory.getLogger(getClass());
 
+  private DataSource dataSource = SingletonServiceFactory.getBean(DataSource.class);
+  private IdGenerator idGenerator = SingletonServiceFactory.getBean(IdGenerator.class);
 
-  private DataSource dataSource;
-  private IdGenerator idGenerator = new IdGeneratorImpl();
-
-  public SagaInstanceRepositoryJdbc(DataSource dataSource) {
-    this.dataSource = dataSource;
+  public SagaInstanceRepositoryJdbc() {
   }
-
-  public void setDataSource(DataSource dataSource) {this.dataSource = dataSource;}
 
   @Override
   public void save(SagaInstance sagaInstance) {
