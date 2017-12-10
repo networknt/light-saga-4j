@@ -9,6 +9,7 @@ import com.networknt.saga.order.domain.OrderRepository;
 import com.networknt.saga.order.domain.OrderState;
 import com.networknt.saga.order.service.OrderService;
 import com.networknt.service.SingletonServiceFactory;
+import com.networknt.tram.command.consumer.CommandDispatcher;
 import org.h2.tools.RunScript;
 import org.junit.Test;
 
@@ -48,8 +49,13 @@ public abstract class AbstractOrdersAndCustomersIntegrationTest {
 
   private OrderRepository orderRepository = SingletonServiceFactory.getBean(OrderRepository.class);
 
+  private CommandDispatcher orderCommandDispatcher = ComponentFactory.getOrderCommandDispatcher();
+  private CommandDispatcher customerCommandDispatcher = ComponentFactory.getCustomerCommandDispatcher();
+
   @Test
   public void shouldApproveOrder() throws InterruptedException {
+    orderCommandDispatcher.initialize();
+    customerCommandDispatcher.initialize();
     Money creditLimit = new Money("15.00");
     Customer customer = customerService.createCustomer("Fred", creditLimit);
     Order order = orderService.createOrder(new OrderDetails(customer.getId(), new Money("12.34")));
@@ -58,6 +64,8 @@ public abstract class AbstractOrdersAndCustomersIntegrationTest {
   }
   @Test
   public void shouldRejectOrder() throws InterruptedException {
+    orderCommandDispatcher.initialize();
+    customerCommandDispatcher.initialize();
     Money creditLimit = new Money("15.00");
     Customer customer = customerService.createCustomer("Fred", creditLimit);
     Order order = orderService.createOrder(new OrderDetails(customer.getId(), new Money("123.40")));

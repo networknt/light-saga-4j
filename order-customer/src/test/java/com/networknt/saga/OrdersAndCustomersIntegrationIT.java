@@ -47,8 +47,11 @@ public  class OrdersAndCustomersIntegrationIT {
   }
 
   private CustomerService customerService = SingletonServiceFactory.getBean(CustomerService.class);
-  private OrderRepository orderRepository = SingletonServiceFactory.getBean(OrderRepository.class);
+
   private OrderService orderService = SingletonServiceFactory.getBean(OrderService.class);
+
+  private OrderRepository orderRepository = SingletonServiceFactory.getBean(OrderRepository.class);
+
   private CommandDispatcher orderCommandDispatcher = ComponentFactory.getOrderCommandDispatcher();
   private CommandDispatcher customerCommandDispatcher = ComponentFactory.getCustomerCommandDispatcher();
 
