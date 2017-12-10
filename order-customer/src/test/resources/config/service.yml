@@ -1,18 +1,35 @@
 ---
 singletons:
 # As we are using InMemoryMessaging for testing, H2 database is used here.
+# - javax.sql.DataSource:
+  # - com.zaxxer.hikari.HikariDataSource:
+  #     DriverClassName: org.h2.jdbcx.JdbcDataSource
+  #     jdbcUrl: jdbc:h2:~/test
+  #     username: sa
+  #     password: sa
 - javax.sql.DataSource:
   - com.zaxxer.hikari.HikariDataSource:
-      DriverClassName: org.h2.jdbcx.JdbcDataSource
-      jdbcUrl: jdbc:h2:~/test
-      username: sa
-      password: sa
+      jdbcUrl: jdbc:mysql://localhost:3306/eventuate?useSSL=false
+      username: mysqluser
+      password: mysqlpw
+      maximumPoolSize: 15
+      useServerPrepStmts: true
+      cachePrepStmts: true
+      cacheCallableStmts: true
+      prepStmtCacheSize: 4096
+      prepStmtCacheSqlLimit: 2048
 # IdGeneratorImpl implements IdGenerator without any parameter dependency
 - com.networknt.eventuate.jdbc.IdGenerator:
   - com.networknt.eventuate.jdbc.IdGeneratorImpl
 # InMemoryMessaging implements both MessageProducer and MessageConsumer and depends on IdGenerator
-- com.networknt.tram.message.producer.MessageProducer,com.networknt.tram.message.consumer.MessageConsumer:
-  - com.networknt.tram.inmemory.InMemoryMessaging
+# - com.networknt.tram.message.producer.MessageProducer,com.networknt.tram.message.consumer.MessageConsumer:
+  # - com.networknt.tram.inmemory.InMemoryMessaging
+- com.networknt.tram.consumer.kafka.DuplicateMessageDetector:
+  - com.networknt.tram.consumer.kafka.SqlTableBasedDuplicateMessageDetector
+- com.networknt.tram.message.consumer.MessageConsumer:
+  - com.networknt.tram.consumer.kafka.MessageConsumerKafkaImpl
+- com.networknt.tram.message.producer.MessageProducer:
+  - com.networknt.tram.message.producer.jdbc.MessageProducerJdbcImpl
 # SagaLockManagerImpl implements SagaLockManager and depends on DataSource.
 - com.networknt.saga.participant.SagaLockManager:
   - com.networknt.saga.participant.SagaLockManagerImpl

@@ -175,6 +175,16 @@
                 <artifactId>tram-in-memory</artifactId>
                 <version>${version.light-tram-4j}</version>
             </dependency>
+            <dependency>
+                <groupId>com.networknt</groupId>
+                <artifactId>tram-consumer-kafka</artifactId>
+                <version>${version.light-tram-4j}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.networknt</groupId>
+                <artifactId>tram-producer-jdbc</artifactId>
+                <version>${version.light-tram-4j}</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.slf4j</groupId>

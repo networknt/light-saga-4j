@@ -49,7 +49,7 @@ CREATE TABLE aggregate_instance_subscriptions(
 );
 
 create table saga_lock_table(
-  target VARCHAR(100) PRIMARY KEY,
+  target VARCHAR(100) NOT NULL,
   saga_type VARCHAR(100) NOT NULL,
   saga_Id VARCHAR(100) NOT NULL,
   PRIMARY KEY(target)
