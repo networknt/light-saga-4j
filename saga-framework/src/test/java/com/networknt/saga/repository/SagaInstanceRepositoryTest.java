@@ -48,7 +48,7 @@ public class SagaInstanceRepositoryTest {
         }
     }
 
-    private SagaInstanceRepository sagaInstanceRepository = (SagaInstanceRepository) SingletonServiceFactory.getBean(SagaInstanceRepository.class);
+    private SagaInstanceRepository sagaInstanceRepository = SingletonServiceFactory.getBean(SagaInstanceRepository.class);
 
 
     private static SagaInstance sagaInstance;

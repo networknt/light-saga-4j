@@ -142,7 +142,7 @@
             </dependency>
             <dependency>
                 <groupId>com.networknt</groupId>
-                <artifactId>eventuate-kafka</artifactId>
+                <artifactId>eventuate-server-kafka</artifactId>
                 <version>${version.light-eventuate-4j}</version>
             </dependency>
             <dependency>
