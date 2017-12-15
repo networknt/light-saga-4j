@@ -61,7 +61,7 @@ public  class OrdersAndCustomersIntegrationIT {
   }
 
 
-  @Test
+  //@Test
   public void shouldApproveOrder() throws InterruptedException {
     orderCommandDispatcher.initialize();
     customerCommandDispatcher.initialize();
@@ -71,7 +71,7 @@ public  class OrdersAndCustomersIntegrationIT {
     assertOrderState(order.getId(), OrderState.APPROVED);
   }
 
-  @Test
+  //@Test
   public void shouldRejectOrder() throws InterruptedException {
     orderCommandDispatcher.initialize();
     customerCommandDispatcher.initialize();
