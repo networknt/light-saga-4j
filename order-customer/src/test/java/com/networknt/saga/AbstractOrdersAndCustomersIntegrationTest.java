@@ -52,7 +52,7 @@ public abstract class AbstractOrdersAndCustomersIntegrationTest {
   private CommandDispatcher orderCommandDispatcher = ComponentFactory.getOrderCommandDispatcher();
   private CommandDispatcher customerCommandDispatcher = ComponentFactory.getCustomerCommandDispatcher();
 
-  //@Test
+  @Test
   public void shouldApproveOrder() throws InterruptedException {
     orderCommandDispatcher.initialize();
     customerCommandDispatcher.initialize();
@@ -62,7 +62,7 @@ public abstract class AbstractOrdersAndCustomersIntegrationTest {
 
     assertOrderState(order.getId(), OrderState.APPROVED);
   }
-  //@Test
+  @Test
   public void shouldRejectOrder() throws InterruptedException {
     orderCommandDispatcher.initialize();
     customerCommandDispatcher.initialize();
