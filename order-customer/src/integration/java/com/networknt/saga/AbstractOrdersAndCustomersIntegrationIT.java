@@ -1,6 +1,5 @@
 package com.networknt.saga;
 
-
 import com.networknt.saga.common.Money;
 import com.networknt.saga.customer.domain.Customer;
 import com.networknt.saga.customer.service.CustomerService;
@@ -12,7 +11,6 @@ import com.networknt.saga.order.service.OrderService;
 import com.networknt.service.SingletonServiceFactory;
 import com.networknt.tram.command.consumer.CommandDispatcher;
 import org.h2.tools.RunScript;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import javax.sql.DataSource;
@@ -24,8 +22,7 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 
-public  class OrdersAndCustomersIntegrationIT {
-
+public abstract class AbstractOrdersAndCustomersIntegrationIT {
 
   static {
     DataSource ds = (DataSource) SingletonServiceFactory.getBean(DataSource.class);
@@ -55,40 +52,34 @@ public  class OrdersAndCustomersIntegrationIT {
   private CommandDispatcher orderCommandDispatcher = ComponentFactory.getOrderCommandDispatcher();
   private CommandDispatcher customerCommandDispatcher = ComponentFactory.getCustomerCommandDispatcher();
 
-  @BeforeClass
-  public static void setUp() {
-
-  }
-
-
-  @Test
+  //@Test
   public void shouldApproveOrder() throws InterruptedException {
     orderCommandDispatcher.initialize();
     customerCommandDispatcher.initialize();
     Money creditLimit = new Money("15.00");
     Customer customer = customerService.createCustomer("Fred", creditLimit);
     Order order = orderService.createOrder(new OrderDetails(customer.getId(), new Money("12.34")));
+
     assertOrderState(order.getId(), OrderState.APPROVED);
   }
-
-  @Test
+  //@Test
   public void shouldRejectOrder() throws InterruptedException {
     orderCommandDispatcher.initialize();
     customerCommandDispatcher.initialize();
     Money creditLimit = new Money("15.00");
     Customer customer = customerService.createCustomer("Fred", creditLimit);
     Order order = orderService.createOrder(new OrderDetails(customer.getId(), new Money("123.40")));
+
     assertOrderState(order.getId(), OrderState.REJECTED);
   }
 
   private void assertOrderState(Long id, OrderState expectedState) throws InterruptedException {
     Order order = null;
     for (int i = 0; i < 30; i++) {
-   //   order = transactionTemplate.execute(s -> orderRepository.findOne(id));
       order = orderRepository.findOne(id);
       if (order.getState() == expectedState)
         break;
-      TimeUnit.MILLISECONDS.sleep(200);
+      TimeUnit.MILLISECONDS.sleep(400);
     }
 
     assertEquals(expectedState, order.getState());
