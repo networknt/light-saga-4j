@@ -1,6 +1,6 @@
 # Change Log
 
-## [1.5.6](https://github.com/networknt/light-saga-4j/tree/1.5.6) (2017-12-30)
+## [1.5.6](https://github.com/networknt/light-saga-4j/tree/1.5.6) (2017-12-31)
 **Closed issues:**
 
 - maven build warnings [\#3](https://github.com/networknt/light-saga-4j/issues/3)
