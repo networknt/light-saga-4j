@@ -2,7 +2,7 @@ DROP Table IF Exists message;
 DROP Table IF Exists received_messages;
 DROP Table IF Exists saga_instance;
 DROP Table IF Exists saga_instance_participants;
-DROP Table IF Exists aggregate_instance_subscriptions;
+DROP Table IF Exists aggre_instance_subscriptions;
 DROP Table IF Exists saga_lock_table;
 DROP Table IF Exists saga_stash_table;
 DROP Table IF Exists saga_enlisted_aggregates;
@@ -40,7 +40,7 @@ CREATE TABLE saga_instance_participants (
   PRIMARY KEY(saga_type, saga_id, destination, resource)
 );
 
-CREATE TABLE aggregate_instance_subscriptions(
+CREATE TABLE aggre_instance_subscriptions(
   aggregate_type VARCHAR(100) DEFAULT NULL,
   aggregate_id VARCHAR(100) NOT NULL,
   event_type VARCHAR(100) NOT NULL,

@@ -9,12 +9,8 @@ singletons:
 # IdGeneratorImpl implements IdGenerator without any parameter dependency
 - com.networknt.eventuate.jdbc.IdGenerator:
   - com.networknt.eventuate.jdbc.IdGeneratorImpl
-- com.networknt.tram.message.producer.MessageProducer:
-  - com.networknt.saga.repository.MessageProducerJdbcImpl
 # SagaInstanceRepositoryJdbc depends on IdGenerator and DataSource
 - com.networknt.saga.orchestration.SagaInstanceRepository:
   - com.networknt.saga.orchestration.SagaInstanceRepositoryJdbc
 - com.networknt.saga.participant.SagaLockManager:
   - com.networknt.saga.participant.SagaLockManagerImpl
-- com.networknt.saga.consumer.DuplicateMessageDetector:
-  - com.networknt.saga.repository.SqlTableBasedDuplicateMessageDetector

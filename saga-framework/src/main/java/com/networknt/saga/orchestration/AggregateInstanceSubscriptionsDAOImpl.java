@@ -27,8 +27,8 @@ public class AggregateInstanceSubscriptionsDAOImpl implements AggregateInstanceS
     @Override
     public void update(String sagaType, String sagaId, List<EventClassAndAggregateId> eventHandlers) {
 
-        String psDelete = "DELETE FROM aggregate_instance_subscriptions WHERE saga_type = ? AND saga_id =?";
-        String psInsert = "INSERT INTO aggregate_instance_subscriptions(aggregate_id, event_type, saga_type, saga_id) values(?, ?, ?, ?)";
+        String psDelete = "DELETE FROM aggre_instance_subscriptions WHERE saga_type = ? AND saga_id =?";
+        String psInsert = "INSERT INTO aggre_instance_subscriptions(aggregate_id, event_type, saga_type, saga_id) values(?, ?, ?, ?)";
         try (final Connection connection = dataSource.getConnection()) {
             connection.setAutoCommit(false);
             PreparedStatement stmt = connection.prepareStatement(psDelete);
@@ -53,7 +53,7 @@ public class AggregateInstanceSubscriptionsDAOImpl implements AggregateInstanceS
 
     @Override
     public List<SagaTypeAndId> findSagas(String aggregateType, String aggregateId, String eventType){
-        String psSelect = "Select saga_type, saga_id from aggregate_instance_subscriptions where aggregate_id = ? and event_type = ?";
+        String psSelect = "Select saga_type, saga_id from aggre_instance_subscriptions where aggregate_id = ? and event_type = ?";
 
         List<SagaTypeAndId> sagas = new ArrayList<>();
         try (final Connection connection = dataSource.getConnection()) {

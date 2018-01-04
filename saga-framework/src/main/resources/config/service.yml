@@ -6,8 +6,6 @@ singletons:
       jdbcUrl: jdbc:h2:~/test
       username: sa
       password: sa
-- com.networknt.saga.core.message.producer.MessageProducer:
-  - com.networknt.saga.repository.MessageProducerJdbcImpl
 - com.networknt.saga.orchestration.SagaInstanceRepository:
   - com.networknt.saga.orchestration.SagaInstanceRepositoryJdbc
 - com.networknt.saga.participant.SagaLockManager:
@@ -16,7 +14,3 @@ singletons:
   - com.networknt.saga.orchestration.EnlistedAggregatesDaoImpl
 - com.networknt.saga.orchestration.AggregateInstanceSubscriptionsDAO:
   - com.networknt.saga.orchestration.AggregateInstanceSubscriptionsDAOImpl
-- com.networknt.saga.consumer.DuplicateMessageDetector:
-  - com.networknt.saga.repository.SqlTableBasedDuplicateMessageDetector
-- com.networknt.saga.core.events.publisher.DomainEventPublisher:
-  - com.networknt.saga.core.events.publisher.DomainEventPublisherImpl
