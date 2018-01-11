@@ -24,7 +24,7 @@ import static org.junit.Assert.assertEquals;
 
 public abstract class AbstractOrdersAndCustomersIntegrationIT {
 
-  static {
+  /*static {
     DataSource ds = (DataSource) SingletonServiceFactory.getBean(DataSource.class);
     try (Connection connection = ds.getConnection()) {
       // Runscript doesn't work need to execute batch here.
@@ -42,7 +42,7 @@ public abstract class AbstractOrdersAndCustomersIntegrationIT {
     }
     SingletonServiceFactory.setBean(DataSource.class.getName(), ds);
   }
-
+*/
   private CustomerService customerService = SingletonServiceFactory.getBean(CustomerService.class);
 
   private OrderService orderService = SingletonServiceFactory.getBean(OrderService.class);
@@ -52,7 +52,7 @@ public abstract class AbstractOrdersAndCustomersIntegrationIT {
   private CommandDispatcher orderCommandDispatcher = ComponentFactory.getOrderCommandDispatcher();
   private CommandDispatcher customerCommandDispatcher = ComponentFactory.getCustomerCommandDispatcher();
 
-  //@Test
+  @Test
   public void shouldApproveOrder() throws InterruptedException {
     orderCommandDispatcher.initialize();
     customerCommandDispatcher.initialize();
@@ -62,7 +62,7 @@ public abstract class AbstractOrdersAndCustomersIntegrationIT {
 
     assertOrderState(order.getId(), OrderState.APPROVED);
   }
-  //@Test
+  @Test
   public void shouldRejectOrder() throws InterruptedException {
     orderCommandDispatcher.initialize();
     customerCommandDispatcher.initialize();
@@ -75,11 +75,11 @@ public abstract class AbstractOrdersAndCustomersIntegrationIT {
 
   private void assertOrderState(Long id, OrderState expectedState) throws InterruptedException {
     Order order = null;
-    for (int i = 0; i < 30; i++) {
+    for (int i = 0; i < 10; i++) {
       order = orderRepository.findOne(id);
       if (order.getState() == expectedState)
         break;
-      TimeUnit.MILLISECONDS.sleep(400);
+      TimeUnit.MILLISECONDS.sleep(1000);
     }
 
     assertEquals(expectedState, order.getState());

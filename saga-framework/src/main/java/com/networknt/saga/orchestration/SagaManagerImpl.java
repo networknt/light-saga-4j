@@ -35,7 +35,7 @@ public class SagaManagerImpl<Data>
         implements SagaManager<Data> {
 
   private Logger logger = LoggerFactory.getLogger(getClass());
-  public static final String DEFAULT_STATE_NAME = "default-name";
+  public static final String DEFAULT_STATE_NAME = "{\"currentlyExecuting\":-1,\"compensating\":false,\"endState\":false}";
 
   private SagaInstanceRepository sagaInstanceRepository =  SingletonServiceFactory.getBean(SagaInstanceRepository.class);
   private MessageConsumer messageConsumer = SingletonServiceFactory.getBean(MessageConsumer.class);
@@ -86,6 +86,9 @@ public class SagaManagerImpl<Data>
 
     SagaActions<Data> actions = getStateDefinition().getStartingHandler().get().apply(sagaData);
 
+    sagaInstance.setStateName(actions.getUpdatedState().get());
+    sagaInstanceRepository.update(sagaInstance);
+
     List<CommandWithDestination> commands = actions.getCommands();
 
     sagaData = actions.getUpdatedSagaData().orElse(sagaData);
@@ -101,6 +104,10 @@ public class SagaManagerImpl<Data>
     maybePerformEndStateActions(sagaId, sagaInstance, possibleNewState);
 
     sagaInstanceRepository.update(sagaInstance);
+
+
+
+
 
     updateEnlistedAggregates(sagaId, actions.getEnlistedAggregates());
 
@@ -272,37 +279,44 @@ public class SagaManagerImpl<Data>
     String currentState = sagaInstance.getStateName();
 
     logger.info("Current state={}", currentState);
-    Optional<ReplyClassAndHandler> replyHandler = getStateDefinition()
-            .findReplyHandler(saga, sagaInstance, currentState, sagaData, requestId, message);
 
-    if (!replyHandler.isPresent()) {
-      logger.error("No handler for {}", message);
-      return;
+    if (!getStateDefinition().isEndState(currentState))  {
+      Optional<ReplyClassAndHandler> replyHandler = getStateDefinition()
+              .findReplyHandler(saga, sagaInstance, currentState, sagaData, requestId, message);
+
+      if (!replyHandler.isPresent()) {
+        logger.error("No handler for {}", message);
+        return;
+      }
+      ReplyClassAndHandler m = replyHandler.get();
+
+      Object param = JSonMapper.fromJson(messageJson, m.getReplyClass());
+
+      SagaActions<Data> actions = (SagaActions<Data>) m.getReplyHandler().apply(sagaData, param);
+
+      List<CommandWithDestination> commands = actions.getCommands();
+
+      sagaData = actions.getUpdatedSagaData().orElse(sagaData);
+
+      logger.info("Handled reply. Sending commands {}", commands);
+
+      publishEvents(sagaId, actions.getEventsToPublish(), actions.getUpdatedState());
+
+      Optional<String> possibleNewState = actions.getUpdatedState();
+      maybeUpdateState(sagaInstance, possibleNewState);
+
+      sagaInstance.setStateName(actions.getUpdatedState().get());
+      sagaInstanceRepository.update(sagaInstance);
+
+      maybePerformEndStateActions(sagaId, sagaInstance, possibleNewState);
+      updateEnlistedAggregates(sagaId, actions.getEnlistedAggregates());
+      sagaInstance.setLastRequestId(sendCommands(sagaId, commands));
+      updateEventInstanceSubscriptions(sagaData, sagaId, sagaInstance.getStateName());
+
+      sagaInstance.setSerializedSagaData(SagaDataSerde.serializeSagaData(sagaData));
+
+      sagaInstanceRepository.update(sagaInstance);
     }
-    ReplyClassAndHandler m = replyHandler.get();
-
-    Object param = JSonMapper.fromJson(messageJson, m.getReplyClass());
-
-    SagaActions<Data> actions = (SagaActions<Data>) m.getReplyHandler().apply(sagaData, param);
-
-    List<CommandWithDestination> commands = actions.getCommands();
-
-    sagaData = actions.getUpdatedSagaData().orElse(sagaData);
-
-    logger.info("Handled reply. Sending commands {}", commands);
-
-    publishEvents(sagaId, actions.getEventsToPublish(), actions.getUpdatedState());
-
-    Optional<String> possibleNewState = actions.getUpdatedState();
-    maybeUpdateState(sagaInstance, possibleNewState);
-    maybePerformEndStateActions(sagaId, sagaInstance, possibleNewState);
-    updateEnlistedAggregates(sagaId, actions.getEnlistedAggregates());
-    sagaInstance.setLastRequestId(sendCommands(sagaId, commands));
-    updateEventInstanceSubscriptions(sagaData, sagaId, sagaInstance.getStateName());
-
-    sagaInstance.setSerializedSagaData(SagaDataSerde.serializeSagaData(sagaData));
-
-    sagaInstanceRepository.update(sagaInstance);
 
   }
 

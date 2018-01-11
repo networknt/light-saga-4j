@@ -31,6 +31,7 @@ public class SagaCommandDispatcher extends CommandDispatcher {
 
   @Override
   public void messageHandler(Message message) {
+    System.out.println("Message  -----------------------> " + message.getPayload());
     if (isUnlockMessage(message)) {
       String sagaType = getSagaType(message);
       String sagaId = getSagaId(message);
