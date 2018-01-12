@@ -24,7 +24,7 @@ import static org.junit.Assert.assertEquals;
 
 public abstract class AbstractOrdersAndCustomersIntegrationIT {
 
-  /*static {
+  static {
     DataSource ds = (DataSource) SingletonServiceFactory.getBean(DataSource.class);
     try (Connection connection = ds.getConnection()) {
       // Runscript doesn't work need to execute batch here.
@@ -42,7 +42,7 @@ public abstract class AbstractOrdersAndCustomersIntegrationIT {
     }
     SingletonServiceFactory.setBean(DataSource.class.getName(), ds);
   }
-*/
+
   private CustomerService customerService = SingletonServiceFactory.getBean(CustomerService.class);
 
   private OrderService orderService = SingletonServiceFactory.getBean(OrderService.class);

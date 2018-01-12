@@ -41,7 +41,7 @@ public class SagaLockManagerImpl implements SagaLockManager {
         } catch (SQLException e) {
           Optional<String> owningSagaId = selectForUpdate(target);
           if (owningSagaId.isPresent()) {
-            if (!owningSagaId.get().equals(sagaId))
+            if (owningSagaId.get().equals(sagaId))
               return true;
             else {
               logger.debug("Saga {} {} is blocked by {} which has locked {}", sagaType, sagaId, owningSagaId, target);
