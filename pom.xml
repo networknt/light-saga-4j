@@ -92,7 +92,7 @@
         <version.zkclient>0.3</version.zkclient>
         <version.curator>4.0.0</version.curator>
         <version.snakeyaml>1.20</version.snakeyaml>
-        <version.caffeine>2.5.6</version.caffeine>
+        <version.caffeine>2.6.2</version.caffeine>
         <version.h2>1.4.196</version.h2>
         <version.mysql>5.1.44</version.mysql>
         <version.mysql-binlog>0.13.0</version.mysql-binlog>
