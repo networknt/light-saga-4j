@@ -96,7 +96,7 @@
         <version.h2>1.4.196</version.h2>
         <version.mysql>5.1.44</version.mysql>
         <version.mysql-binlog>0.13.0</version.mysql-binlog>
-        <version.hikaricp>3.0.0</version.hikaricp>
+        <version.hikaricp>3.1.0</version.hikaricp>
         <version.kafka-clients>1.0.0</version.kafka-clients>
         <versions.maven-version>2.4</versions.maven-version>
         <argLine>-Xmx512m -XX:MaxPermSize=256m</argLine>
