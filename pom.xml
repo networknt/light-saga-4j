@@ -90,12 +90,12 @@
         <version.consul>1.2.4</version.consul>
         <version.zookeeper>3.5.3-beta</version.zookeeper>
         <version.zkclient>0.3</version.zkclient>
-        <version.curator>4.0.0</version.curator>
+        <version.curator>4.0.1</version.curator>
         <version.snakeyaml>1.20</version.snakeyaml>
         <version.caffeine>2.6.2</version.caffeine>
         <version.h2>1.4.196</version.h2>
         <version.mysql>5.1.44</version.mysql>
-        <version.mysql-binlog>0.13.0</version.mysql-binlog>
+        <version.mysql-binlog>0.16.1</version.mysql-binlog>
         <version.hikaricp>3.1.0</version.hikaricp>
         <version.kafka-clients>1.0.0</version.kafka-clients>
         <versions.maven-version>2.4</versions.maven-version>
