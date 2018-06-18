@@ -1,5 +1,16 @@
 # Change Log
 
+## [1.5.15](https://github.com/networknt/light-saga-4j/tree/1.5.15) (2018-06-18)
+[Full Changelog](https://github.com/networknt/light-saga-4j/compare/1.5.14...1.5.15)
+
+**Closed issues:**
+
+- upgrade mysql binlog and curator version [\#7](https://github.com/networknt/light-saga-4j/issues/7)
+- reduce test case max db connection to 5 [\#6](https://github.com/networknt/light-saga-4j/issues/6)
+
+## [1.5.14](https://github.com/networknt/light-saga-4j/tree/1.5.14) (2018-05-19)
+[Full Changelog](https://github.com/networknt/light-saga-4j/compare/1.5.13...1.5.14)
+
 ## [1.5.13](https://github.com/networknt/light-saga-4j/tree/1.5.13) (2018-04-20)
 [Full Changelog](https://github.com/networknt/light-saga-4j/compare/1.5.12...1.5.13)
 
