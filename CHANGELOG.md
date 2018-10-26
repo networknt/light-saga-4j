@@ -1,5 +1,8 @@
 # Change Log
 
+## [1.5.20](https://github.com/networknt/light-saga-4j/tree/1.5.20) (2018-10-05)
+[Full Changelog](https://github.com/networknt/light-saga-4j/compare/1.5.19...1.5.20)
+
 ## [1.5.19](https://github.com/networknt/light-saga-4j/tree/1.5.19) (2018-09-11)
 [Full Changelog](https://github.com/networknt/light-saga-4j/compare/1.5.18...1.5.19)
 
