@@ -11,6 +11,7 @@ import com.networknt.saga.order.service.OrderService;
 import com.networknt.service.SingletonServiceFactory;
 import com.networknt.tram.command.consumer.CommandDispatcher;
 import org.h2.tools.RunScript;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.sql.DataSource;
@@ -52,6 +53,7 @@ public abstract class AbstractOrdersAndCustomersIntegrationIT {
   private CommandDispatcher orderCommandDispatcher = ComponentFactory.getOrderCommandDispatcher();
   private CommandDispatcher customerCommandDispatcher = ComponentFactory.getCustomerCommandDispatcher();
 
+  @Ignore
   @Test
   public void shouldApproveOrder() throws InterruptedException {
     orderCommandDispatcher.initialize();
@@ -62,6 +64,8 @@ public abstract class AbstractOrdersAndCustomersIntegrationIT {
 
     assertOrderState(order.getId(), OrderState.APPROVED);
   }
+
+  @Ignore
   @Test
   public void shouldRejectOrder() throws InterruptedException {
     orderCommandDispatcher.initialize();
