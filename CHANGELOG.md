@@ -1,5 +1,15 @@
 # Change Log
 
+## [1.5.24](https://github.com/networknt/light-saga-4j/tree/1.5.24) (2018-12-15)
+[Full Changelog](https://github.com/networknt/light-saga-4j/compare/1.5.23...1.5.24)
+
+**Closed issues:**
+
+- Integration test case fails in order-customer [\#4](https://github.com/networknt/light-saga-4j/issues/4)
+
+## [1.5.23](https://github.com/networknt/light-saga-4j/tree/1.5.23) (2018-12-01)
+[Full Changelog](https://github.com/networknt/light-saga-4j/compare/1.5.22...1.5.23)
+
 ## [1.5.22](https://github.com/networknt/light-saga-4j/tree/1.5.22) (2018-11-10)
 [Full Changelog](https://github.com/networknt/light-saga-4j/compare/1.5.21...1.5.22)
 
