@@ -2,14 +2,20 @@
 
 A saga implementation to manage distributed transaction across multiple microservices
 
+[Stack Overflow](https://stackoverflow.com/questions/tagged/light-4j) |
+[Google Group](https://groups.google.com/forum/#!forum/light-4j) |
+[Gitter Chat](https://gitter.im/networknt/light-4j) |
+[Subreddit](https://www.reddit.com/r/lightapi/) |
+[Youtube Channel](https://www.youtube.com/channel/UCHCRMWJVXw8iB7zKxF55Byw) |
+[Documentation](https://doc.networknt.com/style/light-saga-4j/) |
+[Contribution Guide](https://doc.networknt.com/contribute/) |
+
 ## Introduction
 
 One big challenge with using the microservice architecture is that developers must deal with the additional complexity of creating a distributed system.
 Developers must use an inter-process communication mechanism. Implementing use cases that span multiple services requires the use of unfamiliar techniques.
 
 Saga is a type of Compensating Transaction pattern, which provides a simple way to help users solve the data consistency problems encountered in micro-service applications.
-
-
 
 
 ## Prerequisites
