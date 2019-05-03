@@ -1,5 +1,12 @@
 # Change Log
 
+## [1.6.1](https://github.com/networknt/light-saga-4j/tree/1.6.1) (2019-05-03)
+
+
+**Merged pull requests:**
+
+
+- fixes \#9 upgrade kafka to 2.0.0 and clean up pom.xml [\#10](https://github.com/networknt/light-saga-4j/pull/10) ([stevehu](https://github.com/stevehu))
 ## [1.6.0](https://github.com/networknt/light-saga-4j/tree/1.6.0) (2019-04-05)
 
 
