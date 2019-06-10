@@ -1,5 +1,12 @@
 # Change Log
 
+## [1.6.4](https://github.com/networknt/light-saga-4j/tree/1.6.4) (2019-06-10)
+
+
+**Merged pull requests:**
+
+
+- fixes \#11 add both release and snapshot repositories [\#12](https://github.com/networknt/light-saga-4j/pull/12) ([stevehu](https://github.com/stevehu))
 ## [1.6.2](https://github.com/networknt/light-saga-4j/tree/1.6.2) (2019-05-17)
 
 
