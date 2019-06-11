@@ -23,7 +23,6 @@ import com.networknt.tram.message.producer.MessageProducer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.PostConstruct;
 import java.util.*;
 
 import static java.util.Collections.emptySet;
@@ -162,7 +161,6 @@ public class SagaManagerImpl<Data>
   }
 
 
-  @PostConstruct
   public void subscribeToReplyChannel() {
     // TODO subscribe to events that trigger the creation of a saga
     messageConsumer.subscribe(saga.getClass().getName() + "-consumer", singleton(channelMapping.transform(makeSagaReplyChannel())), this::handleMessage);
