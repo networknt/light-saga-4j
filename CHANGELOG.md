@@ -1,5 +1,13 @@
 # Change Log
 
+## [2.0.1](https://github.com/networknt/light-saga-4j/tree/2.0.1) (2019-06-13)
+
+
+**Merged pull requests:**
+
+
+- fixes \#11 add both release and snapshot repositories [\#12](https://github.com/networknt/light-saga-4j/pull/12) ([stevehu](https://github.com/stevehu))
+- fixes \#9 upgrade kafka to 2.0.0 and clean up pom.xml [\#10](https://github.com/networknt/light-saga-4j/pull/10) ([stevehu](https://github.com/stevehu))
 ## [1.6.4](https://github.com/networknt/light-saga-4j/tree/1.6.4) (2019-06-10)
 
 
