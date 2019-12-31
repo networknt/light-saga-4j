@@ -6,6 +6,8 @@
 **Merged pull requests:**
 
 
+
+
 ## [1.6.12](https://github.com/networknt/light-saga-4j/tree/1.6.12) (2019-12-30)
 
 
